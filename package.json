@@ -12,23 +12,26 @@
     "setup": "npm install @eslint/js @testing-library/jest-dom @testing-library/react @testing-library/user-event @types/react-dom @types/react @vitejs/plugin-react axios eslint-plugin-react-hooks eslint-plugin-react-refresh eslint-plugin-react globals jsdom react-dom react-router-dom react vite vitest"
   },
   "dependencies": {
+    "@testing-library/user-event": "^14.6.1",
+    "axios": "^1.8.3",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.3.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.17.0",
+    "@eslint/js": "^9.22.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9.17.0",
-    "eslint-plugin-react": "^7.37.2",
-    "eslint-plugin-react-hooks": "^5.0.0",
-    "eslint-plugin-react-refresh": "^0.4.16",
-    "globals": "^15.14.0",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
     "jsdom": "^26.0.0",
-    "vite": "^6.0.5",
-    "vitest": "^3.0.4"
+    "vite": "^6.2.2",
+    "vitest": "^3.0.8"
   }
 }

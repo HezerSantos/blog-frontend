@@ -1,9 +1,102 @@
+@font-face {
+  font-family: mainHeader;
+  src: url('./assets/fonts/ArchivoBlack-Regular.ttf');
+}
+@font-face {
+  font-family: subHeader;
+  src: url('./assets/fonts/GentiumPlus-Regular.ttf');
+}
+@font-face {
+  font-family: mainText;
+  src: url('./assets/fonts/DMSerifDisplay-Regular.ttf');
+}
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+:root{
+  --pri__color: #B94F4F;
+  --side__nav: #E6E6FA;
+  --sec__color: #FFE5E5;
+  --acc__color: #F9ACAC;
+  --shadow: #999999
+}
+
+a{
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: underline;
+}
 button{
   cursor: pointer;
+  border: none;
+}
+
+.validation__main{
+  background-color: var(--sec__color);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: fit-content;
+}
+
+.auth__form{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 3.5rem;
+  background-color: var(--pri__color);
+  width: clamp(25rem, 45vw, 30rem);
+  height: 35rem;
+  box-shadow: 8px 8px 15px var(--shadow);
+}
+
+.auth__input{
+  font-family: subHeader;
+  padding: 1rem;
+}
+
+label.auth__input{
+  color: white;
+  font-size: 1.125rem;
+  text-shadow: 1px 1px 1px var(--shadow);
+}
+
+.input__block{
+  display: flex;
+  flex-direction: column;
+}
+
+.auth__button{
+  font-family: subHeader;
+  color: white;
+  margin-top: auto;
+  padding: 1rem;
+  background-color: var(--acc__color);
+  border: 1px solid white;
+}
+
+.auth__button:hover{
+  background-color: var(--sec__color);
+}
+
+.auth__redirect{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+}
+.auth__redirect > *{
+  color: white;
+}
+
+.revert__padding{
+  padding: 2rem 3.5rem 2rem 3.5rem;
+  gap: .8rem;
 }
