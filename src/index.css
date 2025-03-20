@@ -290,6 +290,9 @@ footer{
 }
 .blog__container{
   min-width: 20rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
 }
 .blog__card{
   container-type: inline-size;
@@ -389,45 +392,6 @@ footer{
 }
 
 
-
-
-
-.home__header{
-  background-color: var(--sec__color);
-  height: 75svh;
-  padding: 2rem 4rem 2rem 4rem;
-  display: grid;
-  grid-template-columns: 1fr 3.5fr;
-  position: relative;
-  box-shadow: 0 4px 5px var(--shadow);
-}
-
-.hero__image{
-  grid-column: 2 / 3;
-  background: url('./assets/images/blog header.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.header__text{
-  position: absolute;
-  left: 2.5rem;
-  top: 20%;
-}
-
-.header__text > *{
-  font-family: mainHeader;
-  font-size: 6.5rem;
-  color: var(--pri__color);
-  text-shadow: 2px 3px 5px var(--text__shadow);
-}
-
-.header__text > :nth-child(2){
-  margin-left: clamp(0rem, 15vw, 15rem);
-}
-
-
 @media (max-width: 1260px){
   .home__header{
     display: block;
@@ -504,5 +468,11 @@ footer{
   .home__main{
     padding-left: 0;
     padding-right: 0;
+  }
+}
+
+@media (max-width: 320px){
+  #root{
+    overflow: auto;
   }
 }
