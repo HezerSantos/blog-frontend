@@ -1,10 +1,26 @@
 import InputBlock from "../components/InputBlock"
 import { Link } from "react-router-dom"
+import axios from "axios"
+axios.defaults.withCredentials = true;
+
+const signUp = async(e) => {
+    e.preventDefault()
+    try{
+        const res = await axios.post("http://localhost:8080/signup" ,{
+            username: e.target.username.value,
+            password: e.target.password.value,
+            confirmPassowrd: e.target.confirmPassword.value
+        })
+        console.log(res)
+    } catch(e){
+        console.log(e)
+    }
+}
 const SignupPage = () => {
     return (
         <>
             <main className="validation__main">
-                <form onSubmit={null} className="auth__form revert__padding">
+                <form onSubmit={signUp} className="auth__form revert__padding">
                     <InputBlock 
                         id={"signup__username"}
                         label={"Username: "}
