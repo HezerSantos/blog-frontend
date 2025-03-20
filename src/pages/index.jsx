@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
 import MainNavBar from "../components/MainNavBar"
 import Footer from "../components/Footer"
+
+import BlogCard from "../components/BlogCard"
 const HomePage = () => {
     return(
         <>
@@ -12,13 +14,19 @@ const HomePage = () => {
                 </div>
                 <div className="hero__image"></div>
             </header>
-            <main className="">
+            <main className="home__main">
                 <div className="trending__header">
                     <h1>TOP TRENDING</h1>
                 </div>
                 <section className="blog__container">
-                    
+                    <BlogCard />
                 </section>
+                <div className="next__container">
+                    <button>
+                        Next Page
+                    </button>
+                    <p>1 of 100</p>
+                </div>
             </main>
             <Footer />
         </>
