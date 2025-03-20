@@ -3,8 +3,8 @@ import { Link } from "react-router-dom"
 const LoginPage = () => {
     return (
         <>
-            <main className="validation__main">
-                <form onSubmit={null} className="auth__form">
+            <form onSubmit={null} className="validation__main">
+                <div  className="auth__form">
                     <InputBlock 
                         id={"login__username"}
                         label={"Username: "}
@@ -22,10 +22,10 @@ const LoginPage = () => {
                     <button type="submit" className="auth__button">Log In</button>
                     <div className="auth__redirect">
                         <Link to="signup">Create an Account</Link>
-                        <Link to="blogs">Continue as Guest</Link>   
+                        <Link to="/home">Continue as Guest</Link>   
                     </div>
-                </form>
-            </main>
+                </div>
+            </form>
         </>
     )
 }

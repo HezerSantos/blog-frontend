@@ -22,7 +22,12 @@
   --side__nav: #E6E6FA;
   --sec__color: #FFE5E5;
   --acc__color: #F9ACAC;
-  --shadow: #999999
+  --shadow: #999999;
+  --text__shadow: rgb(32, 32, 32);
+}
+
+#root{
+  overflow: hidden;
 }
 
 a{
@@ -45,6 +50,8 @@ button{
   min-width: fit-content;
 }
 
+
+
 .auth__form{
   display: flex;
   flex-direction: column;
@@ -52,13 +59,17 @@ button{
   padding: 3.5rem;
   background-color: var(--pri__color);
   width: clamp(25rem, 45vw, 30rem);
-  height: 35rem;
+  min-height: 35rem;
+  height: auto;
   box-shadow: 8px 8px 15px var(--shadow);
+  border-radius: .5rem;
 }
 
 .auth__input{
   font-family: subHeader;
   padding: 1rem;
+  border-radius: .5rem;
+  border: none;
 }
 
 label.auth__input{
@@ -79,6 +90,7 @@ label.auth__input{
   padding: 1rem;
   background-color: var(--acc__color);
   border: 1px solid white;
+  border-radius: .5rem;
 }
 
 .auth__button:hover{
@@ -99,4 +111,168 @@ label.auth__input{
 .revert__padding{
   padding: 2rem 3.5rem 2rem 3.5rem;
   gap: .8rem;
+}
+
+.main__nav{
+  background-color: var(--pri__color);
+  height: 5.35rem;
+  padding: 0 2.5rem 0 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.link__home{
+  color: white;
+  font-family: mainHeader;
+  font-size: 2rem;
+  align-self: center;
+  text-shadow: 1px 6px 4px var(--text__shadow);
+}
+
+.link__home:hover{
+  text-decoration: none;
+  opacity: .8;
+}
+
+.nav__link__container{
+  list-style-type: none;
+  display: flex;
+  gap: 1rem;
+  align-self: center;
+  justify-self: end;
+}
+
+.nav__link__container > * > a{
+  color: white;
+  font-family: mainHeader;
+  font-size: 1.25rem;
+}
+
+.nav__link__container > :last-child > a{
+  color: white;
+  font-family: mainHeader;
+  font-size: 1.25rem;
+  background-color: var(--acc__color);
+  padding: .5rem 1.5rem .5rem 1.5rem;
+}
+
+.nav__link__container > :last-child > a:hover{
+  text-decoration: none;
+  opacity: .8;
+}
+
+.home__header{
+  background-color: var(--sec__color);
+  height: 75svh;
+  padding: 2rem 4rem 2rem 4rem;
+  display: grid;
+  grid-template-columns: 1fr 3.5fr;
+  position: relative;
+  box-shadow: 0 4px 5px var(--shadow);
+}
+
+.hero__image{
+  grid-column: 2 / 3;
+  background: url('./assets/images/blog header.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.header__text{
+  position: absolute;
+  left: 2.5rem;
+  top: 20%;
+}
+
+.header__text > *{
+  font-family: mainHeader;
+  font-size: 6.5rem;
+  color: var(--pri__color);
+  text-shadow: 2px 3px 5px var(--text__shadow);
+}
+
+.header__text > :nth-child(2){
+  margin-left: clamp(0rem, 15vw, 15rem);
+}
+
+.trending__header{
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trending__header > *{
+  font-family: mainHeader;
+  color: var(--pri__color);
+  font-size: 3rem;
+  text-shadow: 2px 2px 4px var(--text__shadow)
+}
+
+footer{
+  background-color: var(--pri__color);
+  height: 18.5rem;
+  padding: 2.5rem 2.5rem 5rem 2.5rem;
+  display: grid;
+  grid-template-columns: 66% 33%;
+}
+
+.footer__header{
+  align-self: flex-start;
+}
+
+.footer__content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.socials__container{
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: max-content;
+  gap: 1rem;
+}
+
+.socials__container > :first-child{
+  font-size: 1.25rem;
+  font-family: subHeader;
+  color: white;
+}
+
+.link__social > *{
+  width: 1.725rem;
+  height: 1.725rem;
+  color: white;
+}
+
+.footer__content__other{
+  display: flex;
+}
+
+.footer__links{
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.footer__link{
+  font-size: 1.25rem;
+  font-family: subHeader;
+  color: white;
+}
+
+.copy__right{
+  font-size: 1.25rem;
+  font-family: subHeader;
+  width: 100%;
+  color:  white;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
 }

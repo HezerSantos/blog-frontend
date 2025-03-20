@@ -26,10 +26,10 @@ const SignupPage = () => {
                         name={"confirmPassword"}
                         placeholder={"e.g Kryptonite1234"}
                     />
-                    <button type="submit" className="auth__button">Log In</button>
+                    <button type="submit" className="auth__button">Sign Up</button>
                     <div className="auth__redirect">
-                        <Link to="/">Sign In</Link>
-                        <Link to="blogs">Continue as Guest</Link>   
+                        <Link to="/">Already a User?</Link>
+                        <Link to="/home">Continue as Guest</Link>   
                     </div>
                 </form>
             </main>
