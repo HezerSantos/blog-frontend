@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { useEffect, useState } from "react"
 import MainNavBar from "../components/MainNavBar"
 import Footer from "../components/Footer"
 
@@ -7,10 +8,29 @@ import BlogCard from "../components/BlogCard"
 import dogImage from '../assets/images/dog.jpg';
 import steak from '../assets/images/steak.jpg'
 import ball from '../assets/images/ball.jpg'
+
+import axios from "axios"
+axios.defaults.withCredentials = true;
+
+const getDashboard = async(setIsLoggedIn) => {
+    try{
+        const res = await axios.get("http://localhost:8080/")
+        console.error(res)
+        setIsLoggedIn(true)
+    } catch(e) {
+        console.error(e)
+    }
+}
+
+
 const HomePage = () => {
+    const [isLoggedIn, setIsLoggedIn ] = useState(false)
+    useEffect(() => {
+        getDashboard(setIsLoggedIn)
+    }, [])
     return(
         <>
-            <MainNavBar />
+            <MainNavBar isLoggedIn={isLoggedIn}/>
             <header className="home__header">
                 <div className="header__text">
                     <h1>The Words</h1>

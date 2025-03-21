@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom"
+import axios from "axios"
+axios.defaults.withCredentials = true;
+const logout = async() => {
+    await axios.post("http://localhost:8080/logout");
+}
 
-const MainNavBar = () => {
+const MainNavBar = ({isLoggedIn}) => {
     return(
         <>
             <nav className="main__nav">
@@ -10,7 +15,7 @@ const MainNavBar = () => {
                     <li><Link>Dashboard</Link></li>
                     <li><Link>Settings</Link></li>
                     <li>
-                        <Link>Log In</Link>
+                        {isLoggedIn? <Link>Log Out</Link> : <Link to={"/login"}>Log In</Link>}
                     </li>
                 </ul>
             </nav>
