@@ -21,8 +21,8 @@ const LoginPage = () => {
                     />
                     <button type="submit" className="auth__button">Log In</button>
                     <div className="auth__redirect">
-                        <Link to="signup">Create an Account</Link>
-                        <Link to="/home">Continue as Guest</Link>   
+                        <Link to="/signup">Create an Account</Link>
+                        <Link to="/">Continue as Guest</Link>   
                     </div>
                 </div>
             </form>

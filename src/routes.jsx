@@ -10,15 +10,15 @@ const routes = [
         children: [
             {
                 index: true,
-                element: <LoginPage />
+                element: <HomePage />
             },
             {
                 path: "signup",
                 element: <SignupPage />
             },
             {
-                path: "home",
-                element: <HomePage />
+                path: "login",
+                element: <LoginPage />
             }
         ]
     }
