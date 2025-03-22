@@ -22,7 +22,7 @@ const getDashboard = async(isAuthenticated, userLogin) => {
     }
 }
 
-
+// document.cookie = "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzQyNjA4NDA5LCJleHAiOjE3NDI2MTIwMDl9.kBKM7LPCjxocEMXCWglOTUSF-2Igo5476MmZg02cfsE"
 const HomePage = () => {
     const { isAuthenticated, userLogin } = useContext(AuthContext)
     useEffect(() => {

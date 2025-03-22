@@ -70,7 +70,7 @@ const LoginPage = () => {
                 )}
                 {isLoading && (
                     <div className="auth__form">
-                        <LoadingScreen />
+                        <LoadingScreen className={"loading__circle"}/>
                     </div>
                 )}
             </form>

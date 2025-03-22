@@ -1,7 +1,7 @@
-const LoadingScreen =() => {
+const LoadingScreen =({className}) => {
     return (
         <>
-            <div className="loading__circle">
+            <div className={className}>
                 <div></div>
             </div>
         </>

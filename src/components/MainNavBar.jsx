@@ -23,7 +23,7 @@ const MainNavBar = () => {
                 <Link to="/" className="link__home">TheyWroteIt</Link>
                 <ul className="nav__link__container">
                     <li><Link>Blogs</Link></li>
-                    <li><Link>Dashboard</Link></li>
+                    <li><Link to="/dashboard">Dashboard</Link></li>
                     <li><Link>Settings</Link></li>
                     <li>
                         {isAuthenticated? <form onSubmit={(e) => logout(e, userLogout, setLoggedOutMessage)}><button>Log Out</button></form> : <Link to={"/login"}>Log In</Link>}

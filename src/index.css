@@ -543,6 +543,23 @@ footer{
   border: 2px solid white;
 }
 
+.loading__dash{
+  background: conic-gradient(var(--acc__color) 0deg 90deg, transparent 90deg 360deg);
+  border: 2px solid var(--acc__color);
+}
+
+.loading__dash div{
+  border: 2px solid var(--acc__color);
+  background-color: white;
+}
+
+.loading__container{
+  height: calc(100svh - 5.35rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @keyframes loading {
   0%{
     transform: rotate(0deg);
