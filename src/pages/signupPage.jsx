@@ -114,7 +114,7 @@ const SignupPage = () => {
                         </>
                     )}
                     {isLoading && (
-                        <LoadingScreen />
+                        <LoadingScreen className={"loading__circle"}/>
                     )}
                 </form>
             </main>
