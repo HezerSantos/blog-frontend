@@ -8,6 +8,8 @@ import SideNav from "../components/SideNav"
 import { Link, useNavigate } from "react-router-dom"
 import InputBlock from "../components/InputBlock"
 axios.defaults.withCredentials = true;
+
+
 const getUser = async(userLogin, setIsLoading) => {
     try{
         const res = await axios.get("http://localhost:8080/")
