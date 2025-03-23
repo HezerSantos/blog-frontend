@@ -1,5 +1,5 @@
 import { useState } from "react"
-const InputBlock = ({name, id, placeholder, className, label, type=null, value, handleEvent, errorBorder}) => {
+const InputBlock = ({name, id, placeholder, className, label, type=null, value, handleEvent, errorBorder, maxLength}) => {
     return (
         <>
             <div className="input__block">
@@ -15,7 +15,8 @@ const InputBlock = ({name, id, placeholder, className, label, type=null, value, 
                     onChange={handleEvent}
                     value={value}
                     style={errorBorder ? {border: "2px solid red"} : {}}
-
+                    maxLength={maxLength}
+                    required
                 />
             </div>
         </>

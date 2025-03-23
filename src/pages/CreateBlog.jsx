@@ -5,7 +5,7 @@ import { AuthContext } from "../../context/authContext"
 import axios from "axios"
 import LoadingScreen from "../components/LoadingScreen"
 import SideNav from "../components/SideNav"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import InputBlock from "../components/InputBlock"
 axios.defaults.withCredentials = true;
 const getUser = async(userLogin, setIsLoading) => {
@@ -19,7 +19,7 @@ const getUser = async(userLogin, setIsLoading) => {
     }
 }
 
-const hanldeBlog = async(e) => {
+const hanldeBlog = async(e, setErrors) => {
     e.preventDefault()
     try{
         const formData = new FormData();
@@ -44,20 +44,32 @@ const hanldeBlog = async(e) => {
             }
         )
         console.log(res)
+        window.location.reload()
     } catch (e) {
         console.error(e)
+        if(e.response.data.errors) setErrors(e.response.data.errors)
     }
 }
 
-const handleInput = (e, setInput ) => {
-    setInput(e.target.value)
+const handleInput = (e, setInput, flag) => {
+    if(flag){
+        setInput(e.target.files[0].name)
+        return
+    }
+    return setInput(e.target.value)
 }
+
 
 const CreateBlog = () => {
     const [ title, setTitle ] = useState("")
+    const [syn, setSyn] = useState("")
+    const [text, setText ] = useState("")
     const { isAuthenticated, userLogin } = useContext(AuthContext)
     const [isLoading, setIsLoading ] = useState(true)
     const [notLoading, setNotLoading ] = useState(false)
+    const [ fileType, setFileType ] = useState("empty")
+    const [errors, setErrors] = useState([])
+    const navigate = useNavigate()
     useEffect(() => {
         getUser(userLogin, setIsLoading)
     }, [])
@@ -66,6 +78,15 @@ const CreateBlog = () => {
             setNotLoading(true)
         }, 3000)
     }, [])
+    useEffect(() => {
+        if(errors.length > 0){
+            errors.forEach(error => {
+                if (error.path === ""){
+                    setFileType(`${error.msg}*`)
+                }
+            })
+        }
+    }, [errors])
     return(
         <>
             <MainNavBar />
@@ -74,29 +95,31 @@ const CreateBlog = () => {
                     isLoading? (
                         <LoadingScreen className={"loading__circle loading__create"}/>
                     ) : (
-                        <form className="blog__form" onSubmit={(e) => hanldeBlog(e)}>
-                        <InputBlock 
-                            name = "title"
-                            id = "iblog__title"
-                            placeholder = "My First Time With Mocha"
-                            className = "iblog__title"
-                            label = "Title: "
-                            type = "text"
-                            value = {title}
-                            handleEvent = { (e) => handleInput(e, setTitle)}
-                        />
-                        <div className="iblog__text__container">
-                            <label htmlFor="iblog__syn" className="liblog__syn">Text: </label>
-                            <textarea name="syn" id="iblog__syn" className="iblog__syn" placeholder="Synopsis:"></textarea>
-                        </div>
-                        <label htmlFor="iblog__image" className="iblog__image"></label>
-                        <input hidden type="file" id="iblog__image" name="file"/>
-                        <div className="iblog__text__container">
-                            <label htmlFor="iblog__text" className="liblog__text">Text: </label>
-                            <textarea name="text" id="iblog__text" className="iblog__text" placeholder="Blog Text Here"></textarea>
-                        </div>
-                        <button type="submit">Submit</button>
-                    </form>
+                        <form className="blog__form" onSubmit={(e) => hanldeBlog(e, setErrors, navigate)}>
+                            <InputBlock 
+                                name = "title"
+                                id = "iblog__title"
+                                placeholder = "My First Time With Mocha"
+                                className = "iblog__title"
+                                label = "Title: "
+                                type = "text"
+                                value = {title}
+                                handleEvent = { (e) => handleInput(e, setTitle, false)}
+                                maxLength = {30}
+                            />
+                            <div className="iblog__text__container">
+                                <label htmlFor="iblog__syn" className="liblog__syn">Text: </label>
+                                <textarea onChange={(e) => handleInput(e, setSyn, false)} required maxLength="610" name="syn" id="iblog__syn" className="iblog__syn" placeholder="Synopsis:"></textarea>
+                            </div>
+                            <label htmlFor="iblog__image" className="iblog__image"></label>
+                            <p>File: {fileType}</p>
+                            <input onChange={(e) => handleInput(e, setFileType, true)} hidden type="file" id="iblog__image" name="file"/>
+                            <div className="iblog__text__container">
+                                <label htmlFor="iblog__text" className="liblog__text">Text: </label>
+                                <textarea onChange={(e) => handleInput(e, setText, false)} name="text" id="iblog__text" className="iblog__text" placeholder="Blog Text Here"></textarea>
+                            </div>
+                            <button type="submit">Submit</button>
+                        </form>
                     )
                 ) : (
                     <>
