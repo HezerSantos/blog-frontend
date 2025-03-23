@@ -12,7 +12,7 @@ import { AuthContext } from "../../context/authContext"
 import axios from "axios"
 axios.defaults.withCredentials = true;
 
-const getDashboard = async(isAuthenticated, userLogin) => {
+const getUser = async(isAuthenticated, userLogin) => {
     try{
         const res = await axios.get("http://localhost:8080/")
         console.log(res)
@@ -25,8 +25,10 @@ const getDashboard = async(isAuthenticated, userLogin) => {
 const HomePage = () => {
     const { isAuthenticated, userLogin } = useContext(AuthContext)
     useEffect(() => {
-        getDashboard(isAuthenticated, userLogin)
+        getUser(isAuthenticated, userLogin)
+        console.log(isAuthenticated)
     }, [])
+
     return(
         <>
             <MainNavBar />

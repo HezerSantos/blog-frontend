@@ -636,7 +636,7 @@ footer{
   justify-content: center;
 }
 
-.create__button > button {
+.create__button > a {
   padding: 1rem 5rem 1rem 5rem;
   font-size: 1rem;
   background-color: var(--pri__color);
@@ -736,4 +736,121 @@ footer{
   .user__content > div{
     width: 100vw;
   }
+}
+
+.blog__creation__container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: clamp(3rem, 15vw, 10rem);
+  padding-right: clamp(3rem, 15vw, 10rem);
+  padding-top: clamp(3rem, 3vw, 8rem);
+  padding-bottom: clamp(3rem, 3vw, 8rem);
+  background-color: var(--sec__color);
+  min-height: calc(100vh - 23.85rem);
+}
+
+.blog__form{
+  width: 100%;
+  padding: clamp(3rem, 25%, 5rem);
+  min-width: 20rem;
+  max-width: 50rem;
+  height: 100%;
+  background: rgb(252, 252, 252);
+  box-shadow: 5px 5px 10px var(--shadow);
+  min-height: 50rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.blog__form > input {
+  width: 100%;
+}
+
+label.iblog__title{
+  font-family: subHeader;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+input.iblog__title{
+  height: 4rem;
+  font-family: subHeader;
+  text-align: center;
+  font-size: clamp(1rem, 2vw, 2rem);
+  border: none;
+  box-shadow: 2px 2px 6px grey;
+}
+
+
+
+.iblog__syn{
+  width: 80%;
+  aspect-ratio: 1 / .25;
+  font-family: mainText;
+  border: none;
+  box-shadow: 2px 2px 6px grey;
+  text-align: start;
+  align-self: center;
+  padding: .5rem;
+  min-height: 8rem;
+  resize: none;
+}
+
+.liblog__syn, .liblog__text{
+  font-family: subHeader;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.iblog__image{
+  position: relative;
+  width: 60%;
+  border: 1px dashed black;
+  aspect-ratio: 1 / .5;
+  cursor: pointer;
+}
+
+.iblog__image::after{
+  position: absolute;
+  content: '+';
+  top: 50%;
+  left: 50%;
+  width: 25%;
+  transform: translate(-50%, -50%);
+  border-radius: 100%;
+  border: 1px dashed black;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iblog__text__container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.iblog__text{
+  font-family: mainText;
+  aspect-ratio: 1 / .5;
+  padding: .5rem;
+  min-height: 17.5rem;
+  resize: none;
+}
+
+.loading__create{
+  background-color: var(--acc__color);
+}
+
+.loading__create{
+  background: conic-gradient(var(--acc__color) 0deg 90deg, transparent 90deg 360deg);
+  border: 2px solid var(--acc__color);
+}
+
+.loading__create div{
+  border: 2px solid var(--acc__color);
+  background-color: var(--sec__color);
 }

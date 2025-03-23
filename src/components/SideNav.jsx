@@ -1,6 +1,7 @@
 import { MdPublish } from "react-icons/md";
 import { RiDraftLine } from "react-icons/ri";
 import { FaComment } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const SideNav = () => {
     return(
@@ -20,9 +21,9 @@ const SideNav = () => {
                         <p>Comments</p>
                     </button>
                     <div className="create__button">
-                        <button>
+                        <Link to={"/dashboard/create-blog"}>
                             Create +
-                        </button>
+                        </Link>
                     </div>
                 </aside>
             </div>

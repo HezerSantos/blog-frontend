@@ -3,6 +3,7 @@ import LoginPage from "./pages/loginPage";
 import SignupPage from "./pages/signupPage";
 import HomePage from "./pages";
 import DashboardPage from "./pages/dashboardPage";
+import CreateBlog from "./pages/CreateBlog";
 const routes = [
     {
         path: "/",
@@ -24,6 +25,10 @@ const routes = [
             {
                 path: "dashboard",
                 element: <DashboardPage />
+            },
+            {
+                path: "dashboard/create-blog",
+                element: <CreateBlog />
             }
         ]
     }

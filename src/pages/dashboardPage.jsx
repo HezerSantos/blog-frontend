@@ -32,8 +32,14 @@ const DashboardPage =() => {
     const { isAuthenticated, userLogin, userLogout } = useContext(AuthContext)
     const [isLoading, setIsLoading ] = useState(false)
     const [user, setUser ] = useState(null)
+    const [notLoading, setNotLoading ] = useState(false)
     useEffect(() => {
         getDashboard(userLogin, userLogout, setUser, setIsLoading)
+    }, [])
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setNotLoading(true)
+        }, 3000)
     }, [])
     return(
         <>
@@ -70,7 +76,11 @@ const DashboardPage =() => {
                 )
             ) : (
                 <main className="loading__container">
-                    <h1>Please <Link to={"/login"}>Log in</Link></h1>
+                    {!notLoading? (
+                        <LoadingScreen className={"loading__circle loading__dash"}/>
+                    ): (
+                        <h1>Please <Link to={"/login"}>Log in</Link></h1>
+                    )}
                 </main>
             )}
             <Footer />
