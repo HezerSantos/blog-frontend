@@ -9,7 +9,7 @@ const logout = async(e, userLogout, setLoggedOutMessage, navigate) => {
     console.log(res.data.message)
     userLogout()
     setLoggedOutMessage(true)
-    navigate("/")
+    // navigate("/")
 }
 
 const MainNavBar = () => {
@@ -24,7 +24,7 @@ const MainNavBar = () => {
                 )}
                 <Link to="/" className="link__home">TheyWroteIt</Link>
                 <ul className="nav__link__container">
-                    <li><Link>Blogs</Link></li>
+                    <li><Link to="https://youtube.com">Blogs</Link></li>
                     <li><Link to="/dashboard">Dashboard</Link></li>
                     <li><Link>Settings</Link></li>
                     <li>

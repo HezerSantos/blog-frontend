@@ -13,13 +13,12 @@ import steak from '../assets/images/steak.jpg'
 axios.defaults.withCredentials = true;
 
 const getDashboard = async(userLogin, userLogout, setUser, setIsLoading) => {
-    setIsLoading(true)
     try{
         const res = await axios.get("http://localhost:8080/dashboard")
         console.log(res)
         setUser(res.data.user)
-        userLogin()
         setIsLoading(true)
+        userLogin()
     } catch (e){
         // console.error(e)
         setIsLoading(false)
@@ -32,13 +31,13 @@ const getDashboard = async(userLogin, userLogout, setUser, setIsLoading) => {
 const DashboardPage =() => {
     const { isAuthenticated, userLogin, userLogout } = useContext(AuthContext)
     const [isLoading, setIsLoading ] = useState(false)
-    const [user, setUser ] = useState()
+    const [user, setUser ] = useState(null)
     useEffect(() => {
         getDashboard(userLogin, userLogout, setUser, setIsLoading)
     }, [])
     return(
         <>
-            <MainNavBar />
+            <MainNavBar/>
             {isAuthenticated ? (
                 isLoading ? (
                     <main className="dashboard__container">
@@ -71,11 +70,7 @@ const DashboardPage =() => {
                 )
             ) : (
                 <main className="loading__container">
-                    {isLoading ? (
-                        <LoadingScreen className={"loading__circle loading__dash"}/>
-                    ) : (
-                        <h1>Please <Link to={"/login"}>Log in</Link></h1>
-                    )}
+                    <h1>Please <Link to={"/login"}>Log in</Link></h1>
                 </main>
             )}
             <Footer />
