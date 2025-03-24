@@ -24,7 +24,7 @@ const MainNavBar = () => {
                 )}
                 <Link to="/" className="link__home">TheyWroteIt</Link>
                 <ul className="nav__link__container">
-                    <li><Link to="https://youtube.com">Blogs</Link></li>
+                    <li><Link to="/blogs">Blogs</Link></li>
                     <li><Link to="/dashboard">Dashboard</Link></li>
                     <li><Link>Settings</Link></li>
                     <li>

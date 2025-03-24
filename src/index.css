@@ -26,6 +26,7 @@
   --acc__color: #F9ACAC;
   --shadow: #999999;
   --text__shadow: rgb(32, 32, 32);
+  --button__hover: #af2f2f;
 }
 
 #root{
@@ -419,6 +420,11 @@ footer{
   background-color: var(--pri__color);
   font-family: mainHeader;
   color: white;
+  text-align: center;
+}
+
+.blog__open.blog__open:hover{
+  background-color: var(--button__hover);
 }
 
 .blog__author{
@@ -440,6 +446,10 @@ footer{
   font-family: mainHeader;
   font-size: 1.25rem;
   border: 2px solid var(--acc__color);
+}
+
+.next__container button:hover{
+  background-color: var(--button__hover);
 }
 
 .next__container p{
@@ -658,15 +668,43 @@ footer{
 
 .user__content > div{
   width: calc(100vw - clamp(8rem, 25vw, 23.25rem));
-  height: calc(100svh - 5.35rem);
-  overflow: auto;
-  scrollbar-width: none;
   padding: 5rem clamp(3rem, 15%, 10rem) 5rem clamp(3rem, 15%, 10rem);
-  gap: 5rem;
 }
 
+.published{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  scrollbar-width: none;
+  gap: 5rem;
+  display: flex;
+  flex-direction: column;
+}
 .published > div {
-  margin-bottom: 5rem;
+  width: 100%;
+}
+@media (max-width: 400px){
+  .user__content > div{
+    padding: 0;
+  }
+}
+
+.loading__dash__blog{
+  position: absolute;
+  max-width: 6.25rem;
+  height: 6.25rem;
+  background: conic-gradient(var(--acc__color) 0deg 90deg, transparent 90deg 360deg);
+  border: 2px solid var(--acc__color);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.loading__dash__blog div{
+  border: 2px solid var(--acc__color);
+  background-color: white;
 }
 
 .wrapper{
@@ -729,7 +767,9 @@ footer{
     background-color: var(--pri__color);
     transition: .5s ease-in-out;
   }
-
+  .create__button > a{
+    padding: 0;
+  }
   .create__button > button {
     padding: .5rem;
     font-size: auto;
@@ -860,4 +900,42 @@ input.iblog__title{
 .loading__create div{
   border: 2px solid var(--acc__color);
   background-color: var(--sec__color);
+}
+
+.submit__blog, .go__home{
+  padding: 1rem 1.725rem 1rem 1.725rem;
+  font-size: 1.125rem;
+  background-color: var(--pri__color);
+  font-family: mainHeader;
+  color: white;
+}
+
+.submit__blog:hover, .go__home:hover{
+  background-color: var(--button__hover);
+}
+
+.blog__show{
+  padding: clamp(0rem, 5%, 5rem) clamp(0rem, 10%, 10rem) clamp(0rem, 5%, 5rem) clamp(0rem, 10%, 10rem);
+  min-height: calc(100vh - 23.85rem);
+  background-color: var(--sec__color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  min-width: 20rem;
+}
+
+.page{
+  align-self: center;
+}
+.sblog__text{
+  font-family: mainText;
+  max-width: 65.25rem;
+  font-size: 1.25rem;
+  white-space: pre-line;
+}
+
+.sblog__image{
+  width: clamp(20rem, 50%, 50rem);
+  box-shadow: 5px 5px 15px var(--text__shadow);
 }

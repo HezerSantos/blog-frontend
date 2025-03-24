@@ -4,6 +4,7 @@ import SignupPage from "./pages/signupPage";
 import HomePage from "./pages";
 import DashboardPage from "./pages/dashboardPage";
 import CreateBlog from "./pages/CreateBlog";
+import ViewBlog from "./pages/ViewBlog";
 const routes = [
     {
         path: "/",
@@ -29,6 +30,10 @@ const routes = [
             {
                 path: "dashboard/create-blog",
                 element: <CreateBlog />
+            },
+            {
+                path: "blogs/:id",
+                element: <ViewBlog />
             }
         ]
     }

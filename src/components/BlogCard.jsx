@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom';
 import dogImage from '../assets/images/dog.jpg';
-const BlogCard = ({image, header, text, author}) => {
+const BlogCard = ({image, header, text, author, id}) => {
+    const url = `/blogs/${id}`
     return(
         <>
             <div className="blog__card">
@@ -14,7 +16,7 @@ const BlogCard = ({image, header, text, author}) => {
                         {text}
                     </p>
                     <div className='blog__aside__footer'>
-                        <button className="blog__open">Read More</button>
+                        <Link className="blog__open" to={url}>Read More</Link>
                         <p className="blog__author">By: {author}</p>
                     </div>
                 </div>

@@ -5,9 +5,6 @@ import Footer from "../components/Footer"
 
 import BlogCard from "../components/BlogCard"
 
-import dogImage from '../assets/images/dog.jpg';
-import steak from '../assets/images/steak.jpg'
-import ball from '../assets/images/ball.jpg'
 import { AuthContext } from "../../context/authContext"
 import axios from "axios"
 import DOMPurify from 'dompurify';
@@ -37,13 +34,18 @@ const getBlogs = async(setAllBlogs, setBlogLoading) => {
             const decodedSyn = decode(sanittizedSyn)
             const sanittizedTitle = DOMPurify.sanitize(blog.title)
             const decodedTitle = decode(sanittizedTitle)
+            let url=""
+            if (blog.image[0]){
+                url = blog.image[0].url
+            }
             return(
                 <BlogCard 
                     key={blog.id}
-                    image = {blog.image[0].url}
+                    image = {url}
                     header ={decodedTitle}
                     text = {decodedSyn}
                     author = "Jason Williams"
+                    id={blog.id}
                 />
             )
         })

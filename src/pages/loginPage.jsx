@@ -1,12 +1,13 @@
 import InputBlock from "../components/InputBlock"
 import { Link, useNavigate } from "react-router-dom"
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios"
 axios.defaults.withCredentials = true;
+import { AuthContext } from "../../context/authContext"
 
 import LoadingScreen from "../components/LoadingScreen";
 
-const login = async(e, navigate, setError, setLoginError, setIsLoading) => {
+const login = async(e, navigate, setError, setLoginError, setIsLoading, userLogin) => {
     e.preventDefault()
     try {
         setIsLoading(true)
@@ -15,6 +16,7 @@ const login = async(e, navigate, setError, setLoginError, setIsLoading) => {
             password: e.target.password.value
         })
         console.log(res)
+        userLogin()
         navigate("/")
     } catch (e) {
         console.error(e)
@@ -29,6 +31,7 @@ const handleInput = (e, setInput) => {
 }
 
 const LoginPage = () => {
+    const { isAuthenticated, userLogin } = useContext(AuthContext)
     const [isLoading, setIsLoading] = useState(false)
     const [ error, setError ] = useState(false)
     const [ loginError, setLoginError ] = useState(false)
@@ -37,7 +40,7 @@ const LoginPage = () => {
     const navigate = useNavigate()
     return (
         <>
-            <form onSubmit={(e) => login(e, navigate, setError, setLoginError, setIsLoading)} className="validation__main">
+            <form onSubmit={(e) => login(e, navigate, setError, setLoginError, setIsLoading, userLogin)} className="validation__main">
                 {!isLoading && (
                     <div className="auth__form">
                     <InputBlock 

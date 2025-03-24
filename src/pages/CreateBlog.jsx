@@ -126,7 +126,7 @@ const CreateBlog = () => {
                                     <label htmlFor="iblog__text" className="liblog__text">Text: </label>
                                     <textarea onChange={(e) => handleInput(e, setText, false)} name="text" id="iblog__text" className="iblog__text" placeholder="Blog Text Here" value={text}></textarea>
                                 </div>
-                                <button type="submit">Submit</button>
+                                <button type="submit" className="submit__blog">Submit</button>
                             </form>
                         ) : (
                             <LoadingScreen className={"loading__circle loading__create"}/>
