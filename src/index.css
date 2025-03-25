@@ -255,6 +255,8 @@ input.auth__input{
   justify-content: center;
 }
 
+
+
 .trending__header{
   margin-bottom: 1rem;
 }
@@ -350,6 +352,7 @@ footer{
   align-items: center;
   justify-content: center;
   gap: 3.5rem;
+  margin-bottom: 3.5rem;
 }
 .blog__card{
   container-type: inline-size;
@@ -391,6 +394,7 @@ footer{
 .blog__text{
   font-family: mainText;
   font-size: 1.125rem;
+  width: 100%;
 }
 
 .blog__aside{
@@ -456,6 +460,11 @@ footer{
   color: var(--pri__color);
   font-size: 1.25rem;
   font-family: mainHeader;
+}
+
+.next__container > div{
+  display: flex;
+  gap: 2rem;
 }
 
 
@@ -938,4 +947,14 @@ input.iblog__title{
 .sblog__image{
   width: clamp(20rem, 50%, 50rem);
   box-shadow: 5px 5px 15px var(--text__shadow);
+}
+
+.blog__page{
+  padding: 5% 15% 5% 15%;
+  min-height: calc((100vh - 23.85rem));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 3rem;
 }

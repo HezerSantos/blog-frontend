@@ -5,6 +5,7 @@ import HomePage from "./pages";
 import DashboardPage from "./pages/dashboardPage";
 import CreateBlog from "./pages/CreateBlog";
 import ViewBlog from "./pages/ViewBlog";
+import BlogPage from "./pages/BlogPage";
 const routes = [
     {
         path: "/",
@@ -34,6 +35,10 @@ const routes = [
             {
                 path: "blogs/:id",
                 element: <ViewBlog />
+            },
+            {
+                path: "blogs",
+                element: <BlogPage />
             }
         ]
     }
