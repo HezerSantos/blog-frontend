@@ -10,7 +10,7 @@ import BlogCard from "../components/BlogCard"
 import DOMPurify from 'dompurify';
 import { decode } from 'he'; 
 
-const getBlogs = async(setBlogs, setBlogLoading, setShownBlogs) => {
+const getBlogs = async(setBlogs, setBlogLoading, setShownBlogs, setTotalPages) => {
     try{
         const res = await axios.get("http://localhost:8080/blogs")
         let blogs = res.data.blogs
@@ -35,6 +35,9 @@ const getBlogs = async(setBlogs, setBlogLoading, setShownBlogs) => {
                 />
             )
         })
+
+        const totalPages = Math.floor(blogComponents.length / 3)
+        setTotalPages(totalPages)
         const splitBlogs = blogComponents.slice(0,3)
         setShownBlogs(splitBlogs)
         setBlogs(blogComponents)
@@ -44,7 +47,7 @@ const getBlogs = async(setBlogs, setBlogLoading, setShownBlogs) => {
     }
 }
 
-const handleNext = (blogCount, setBlogCount, blogs, setShownBlogs, setPrevFlag, setNextFlag) => {
+const handleNext = (blogCount, setBlogCount, blogs, setShownBlogs, setPrevFlag, setNextFlag, setCurrentPage) => {
     const exclusive = blogCount + 3
     const splitBlogs = blogs.slice(blogCount, exclusive)
 
@@ -59,12 +62,12 @@ const handleNext = (blogCount, setBlogCount, blogs, setShownBlogs, setPrevFlag, 
         top: 0,
         left: 0,
       });
-      
+    setCurrentPage(prev => prev += 1) 
     setShownBlogs(splitBlogs)
     setBlogCount(exclusive)
 }
 
-const handlePrev = (blogCount, setBlogCount, blogs, setShownBlogs, setPrevFlag, setNextFlag) => {
+const handlePrev = (blogCount, setBlogCount, blogs, setShownBlogs, setPrevFlag, setNextFlag, setCurrentPage) => {
     const exclusive = blogCount - 3
     const start = exclusive - 3
     const splitBlogs = blogs.slice(start, exclusive)
@@ -80,7 +83,7 @@ const handlePrev = (blogCount, setBlogCount, blogs, setShownBlogs, setPrevFlag, 
         top: 0,
         left: 0,
       });
-      
+      setCurrentPage(prev => prev -= 1)   
     setShownBlogs(splitBlogs)
     setBlogCount(exclusive)
 }
@@ -92,8 +95,10 @@ const BlogPage = () => {
     const [blogCount, setBlogCount] = useState(3)
     const [nextFlag, setNextFlag ] = useState(true)
     const [prevFlag, setPrevFlag ] = useState(false)
+    const [totalPages, setTotalPages ] = useState(0)
+    const [currentPage, setCurrentPage] = useState(1)
     useEffect(() => {
-        getBlogs(setBlogs, setBlogLoading, setShownBlogs)
+        getBlogs(setBlogs, setBlogLoading, setShownBlogs, setTotalPages)
     }, [])
 
     
@@ -111,17 +116,17 @@ const BlogPage = () => {
                         <div className="next__container">
                             <div>
                                 {prevFlag && (
-                                    <button onClick={() => handlePrev(blogCount, setBlogCount, blogs, setShownBlogs, setPrevFlag, setNextFlag) }>
+                                    <button onClick={() => handlePrev(blogCount, setBlogCount, blogs, setShownBlogs, setPrevFlag, setNextFlag, setCurrentPage) }>
                                         Prev Page
                                     </button>
                                 )}
                                 {nextFlag && (
-                                    <button onClick={() => handleNext(blogCount, setBlogCount, blogs, setShownBlogs, setPrevFlag, setNextFlag)}>
+                                    <button onClick={() => handleNext(blogCount, setBlogCount, blogs, setShownBlogs, setPrevFlag, setNextFlag, setCurrentPage)}>
                                         Next Page
                                     </button>
                                 )}
                             </div>
-                            <p>1 of 100</p>
+                            <p>{currentPage} of {totalPages}</p>
                         </div>
                     </>
                 )}

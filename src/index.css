@@ -911,7 +911,7 @@ input.iblog__title{
   background-color: var(--sec__color);
 }
 
-.submit__blog, .go__home{
+.submit__blog, .go__home, .log__out{
   padding: 1rem 1.725rem 1rem 1.725rem;
   font-size: 1.125rem;
   background-color: var(--pri__color);
@@ -919,8 +919,14 @@ input.iblog__title{
   color: white;
 }
 
-.submit__blog:hover, .go__home:hover{
+.submit__blog:hover, .go__home:hover, .log__out:hover{
   background-color: var(--button__hover);
+}
+
+.log__out{
+  padding: .8rem 1.25rem .8rem 1.25rem;
+  font-family: subHeader;
+  font-size: 1rem;
 }
 
 .blog__show{
@@ -957,4 +963,152 @@ input.iblog__title{
   justify-content: center;
   flex-direction: column;
   gap: 3rem;
+}
+
+.settings__page{
+  height: 100svh;
+  background-color: rgb(245, 245, 245);
+  display: grid;
+  grid-template-columns: 15rem 5fr;
+  padding: 5%;
+  gap: 1rem;
+}
+
+.settings__page > aside, .settings__page > div{
+  background-color: white;
+  box-shadow: 0 5px 20px var(--text__shadow);
+  border-radius: 1rem;
+}
+.settings__page > aside{
+  padding-top: 5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.settings__list{
+  list-style-type: none;
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+}
+.settings__list li{
+  width: 100%;
+}
+
+.settings__list li:hover{
+  background-color: var(--pri__color);
+
+}
+
+.settings__list button, .settings__list a{
+  width: 100%;
+  text-align: left;
+  padding: .5rem;
+  font-family: mainHeader;
+  font-size: 1;
+  background-color: transparent;
+  color: rgb(34, 34, 34);
+}
+
+.settings__list button:hover, .settings__list a:hover{
+  color: white;
+}
+
+.settings__page > div{
+  padding: 5rem;
+  position: relative;
+}
+
+.settings__page > div > h1{
+  font-family: mainHeader;
+}
+
+.settings__page > div > button, .settings__page > div > a{
+  border-radius: 1rem;
+  margin-right: 1rem;
+  margin-top: 1rem;
+  text-decoration: none;
+  box-shadow: 0px 2px 5px 1px rgb(160, 160, 160);
+}
+
+.settings__page > div > a, .back{
+  background-color: rgb(69, 135, 223);
+  color: rgb(255, 255, 255);
+}
+
+.settings__page > div > a:hover, .back:hover{
+  background-color: rgb(28, 110, 218);
+}
+
+.change{
+  max-width: 25rem;
+}
+
+label.change{
+  font-family: subHeader;
+  font-weight: 900;
+}
+
+input.change{
+  height: 3rem;
+  margin-bottom: 1rem;
+  font-family: subHeader;
+  border-radius: .5rem;
+  border: none;
+  box-shadow: 0 3px 10px grey;
+  padding-left: 1rem;
+  margin-top: 1rem
+}
+
+button.change{
+  padding: .8rem 1.25rem .8rem 1.25rem;
+  background-color: var(--pri__color);
+  color: white;
+  font-family: mainText;
+  border-radius: .5rem;
+  margin-right: 1rem;
+}
+
+.back{
+  padding: .8rem 1.25rem .8rem 1.25rem;
+  font-family: mainText;
+  border-radius: .5rem;
+  margin-right: 1rem;
+}
+
+button.change:hover{
+  background-color: #af2f2f;
+}
+
+.settings__page{
+  position: relative;
+}
+
+div.modal{
+  position: absolute;
+  border-radius: 0;
+  width: 100%;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  z-index: 3;
+}
+
+div.modal::after{
+  position: absolute;
+  content: '';
+  inset: 0 0 0 0;
+  background-color: black;
+  z-index: -1;
+  opacity: 45%;
+}
+
+.modal form{
+  background-color: white;
+  max-width: none;
+  width: 35rem;
+  min-width: 20rem;
+  padding: 1rem;
+  border-radius: 1rem;
 }
