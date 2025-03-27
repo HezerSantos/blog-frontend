@@ -9,7 +9,9 @@ import { Link } from "react-router-dom"
 import BlogCard from "../components/BlogCard"
 import DOMPurify from 'dompurify';
 import { decode } from 'he'; 
-
+import { MdPublish } from "react-icons/md";
+import { RiDraftLine } from "react-icons/ri";
+import { FaComment } from "react-icons/fa";
 axios.defaults.withCredentials = true;
 
 const getDashboard = async(userLogin, userLogout, setUser, setIsLoading) => {
@@ -83,29 +85,21 @@ const DashboardPage =() => {
     }, [userBlogs])
     return(
         <>
-            <MainNavBar/>
+            <MainNavBar sideNav={true} create={true}/>
+
             {isAuthenticated ? (
-                isLoading ? (
+                isLoading && (
                     <main className="dashboard__container">
-                        <SideNav />
-                        <section className="user__content">
-                            <div className="published">
-                                {loadBlogs? (
-                                    <LoadingScreen className={"loading__circle loading__dash__blog"}/>
-                                ) : (
-                                    userBlogs.map(blog => {
-                                        return(
-                                            blog
-                                        )
-                                    })
-                                )}
-                            </div>
-                        </section>
-                    </main>
-                ) : (
-                    <main className="loading__container">
-                        <LoadingScreen className={"loading__circle loading__dash"}/>
-                    </main>
+                        {loadBlogs? (
+                            <LoadingScreen className={"loading__dash__blog"}/>
+                        ) : (
+                            userBlogs.map(blog => {
+                                return(
+                                    blog
+                                )
+                            })
+                        )}
+                </main>
                 )
             ) : (
                 <main className="loading__container">

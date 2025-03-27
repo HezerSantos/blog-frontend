@@ -222,6 +222,12 @@ input.auth__input{
   box-shadow: 0 4px 5px var(--shadow);
 }
 
+@media (max-width: 650px){
+  .home__header{
+    margin-top: 5vh;
+  }
+}
+
 .hero__image{
   grid-column: 2 / 3;
   background: url('./assets/images/blog header.jpg');
@@ -467,6 +473,47 @@ footer{
   gap: 2rem;
 }
 
+.main__side{
+  position: fixed;
+  width: 15rem;
+  height: 100svh;
+  background-color: var(--pri__color);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  padding-top: 5rem;
+  gap: 1rem;
+  transition: 1s ease-in-out;
+  display: none;
+}
+
+.nav__side{
+  display: flex;
+  flex-direction: column;
+}
+
+.side__button__container{
+  height: 5vh;
+  width: 100%;
+  background-color: var(--pri__color);
+  position: fixed;
+  z-index: 7;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding-right: 1rem;
+  display: none;
+  min-width: 20rem;
+}
+
+.side__button__container button{
+  background-color: transparent;
+}
+.side__button__container button svg {
+  width: 2rem;
+  height: 2rem;
+  color: white;
+}
 
 @media (max-width: 1260px){
   .home__header{
@@ -522,6 +569,9 @@ footer{
 }
 
 @media (max-width: 650px){
+  .side__button__container, .main__side{
+    display: flex;
+  }
   .main__nav{
     display: none;
   }
@@ -607,10 +657,7 @@ footer{
 }
 
 
-.dashboard__container{
-  height: calc(100svh - 5.35rem);
-  display: flex;
-}
+
 
 .dashboard__nav{
   position: relative;
@@ -676,20 +723,11 @@ footer{
 
 
 .user__content > div{
-  width: calc(100vw - clamp(8rem, 25vw, 23.25rem));
+  width: calc(100vw);
   padding: 5rem clamp(3rem, 15%, 10rem) 5rem clamp(3rem, 15%, 10rem);
 }
 
-.published{
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  scrollbar-width: none;
-  gap: 5rem;
-  display: flex;
-  flex-direction: column;
-}
+
 .published > div {
   width: 100%;
 }
@@ -699,22 +737,7 @@ footer{
   }
 }
 
-.loading__dash__blog{
-  position: absolute;
-  max-width: 6.25rem;
-  height: 6.25rem;
-  background: conic-gradient(var(--acc__color) 0deg 90deg, transparent 90deg 360deg);
-  border: 2px solid var(--acc__color);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
 
-
-.loading__dash__blog div{
-  border: 2px solid var(--acc__color);
-  background-color: white;
-}
 
 .wrapper{
   container-type: inline-size;
@@ -786,12 +809,26 @@ footer{
 }
 
 @media (max-width: 510px){
-  .dashboard__nav, .side__nav__wrapper{
-    display: none;
-  }
   .user__content > div{
     width: 100vw;
   }
+
+  .side__nav__wrapper, .dashboard__nav{
+    display: none;
+  }
+}
+
+.published{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  scrollbar-width: none;
+  gap: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .blog__creation__container{
@@ -804,6 +841,13 @@ footer{
   padding-bottom: clamp(3rem, 3vw, 8rem);
   background-color: var(--sec__color);
   min-height: calc(100vh - 23.85rem);
+}
+
+@media (max-width: 650px){
+  .blog__creation__container{
+    margin-top: 5vh;
+    min-height: calc(100vh - 23.85rem + 5vh);
+  }
 }
 
 .blog__form{
@@ -940,6 +984,13 @@ input.iblog__title{
   min-width: 20rem;
 }
 
+@media (max-width:650px){
+  .blog__show{
+    margin-top: 5vh;
+    min-height: calc(100vh - 23.85rem + 5vh);
+  }
+}
+
 .page{
   align-self: center;
 }
@@ -965,6 +1016,13 @@ input.iblog__title{
   gap: 3rem;
 }
 
+@media (max-width: 650px){
+  .blog__page{
+    margin-top: 5vh;
+    min-height: calc(100vh - 23.85rem + 5vh);
+  }
+}
+
 .settings__page{
   height: 100svh;
   background-color: rgb(245, 245, 245);
@@ -983,6 +1041,7 @@ input.iblog__title{
   padding-top: 5rem;
   padding-left: 1rem;
   padding-right: 1rem;
+  transition: transform 1s ease-in-out;
 }
 .settings__list{
   list-style-type: none;
@@ -1116,4 +1175,147 @@ div.modal::after{
 .red{
   color: red;
   margin-bottom: 1rem;
+}
+
+.top__nav{
+  background-color: var(--pri__color);
+  position: fixed;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding-right: 2rem;
+  z-index: 4;
+  width: 100%;
+  box-shadow: 0 2px 10px grey;
+  display: none;
+}
+
+.top__nav button{
+  background-color: transparent;
+}
+
+.top__nav button svg{
+  color: white;
+  height: 2rem;
+  width: 2rem;
+}
+
+.top__nav button svg path{
+}
+
+.show{
+  transform: translateX(-100%);
+  transition: 1s ease-in-out;
+}
+
+@media (max-width: 800px){
+  .top__nav{
+    display: flex;
+  }
+  .settings__page{
+    margin-top: 5vh;
+    grid-template-columns: 1fr;
+  }
+  .settings__page > aside{
+    position: absolute;
+    z-index: 2;
+    height: 100svh;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .settings__page > div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 20rem;
+  }
+
+  input.change{
+    max-width: 100%;
+  }
+  .settings__page > div > button{
+    margin: 0;
+  }
+  button.change{
+    min-width: 20rem;
+    width: 100%;
+    margin: 0;
+  }
+
+
+}
+
+@media (max-width: 500px){
+  .settings__page{
+    padding: 0;
+  }
+  .settings__page > div{
+    padding: 5%;
+    justify-content: center;
+  }
+
+}
+
+@media (max-width: 650px){
+  .nav__link__container > :last-child > a, .nav__link__container button {
+    background-color: transparent;
+  }
+}
+
+.dash__link__button{
+  background-color: var(--acc__color);
+  padding: 1rem 2rem 1rem 2rem;;
+}
+
+.dash__link__button a{
+  color: white;
+  font-family: mainHeader;
+}
+.dashboard__container{
+  position: relative;
+  height: calc(100svh - 5.35rem);
+  width: 100%;
+  padding: 5% 15% 5% 15%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+
+.loading__dash__blog{
+  width: 6.25rem;
+  height: 6.25rem;
+  background: conic-gradient(var(--acc__color) 0deg 90deg, transparent 90deg 360deg);
+  border-radius: 50%;
+  border: 2px solid var(--acc__color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: loading .3s linear infinite;
+  position: relative;
+  align-self: center;
+  top: 50%;
+}
+
+
+.loading__dash__blog div{
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  border: 2px solid var(--acc__color);
+  background-color: white;
+}
+
+@media (max-width: 650px){
+  .dashboard__container{
+    margin-top: 5vh;
+  }
+}
+
+@media (max-width: 450px){
+  .dashboard__container{
+    padding: 1%;
+  }
 }
