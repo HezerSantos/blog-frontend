@@ -6,7 +6,7 @@ import axios from "axios"
 import LoadingScreen from "../components/LoadingScreen"
 import SideNav from "../components/SideNav"
 import { Link } from "react-router-dom"
-import BlogCard from "../components/BlogCard"
+import DashBlogCard from "../components/DashBlogCard"
 import DOMPurify from 'dompurify';
 import { decode } from 'he'; 
 import { MdPublish } from "react-icons/md";
@@ -21,19 +21,20 @@ const getDashboard = async(userLogin, userLogout, setUser, setIsLoading) => {
         setUser(res.data.user)
         setIsLoading(true)
         userLogin()
+        return true
     } catch (e){
         // console.error(e)
         setIsLoading(false)
         setUser(null)
         userLogout()
+        return false
     }
 } 
 
-const getBlogs = async(setUserBlogs, setLoadBlogs) => {
-    
+const getBlogs = async(setUserBlogs, setLoadBlogs, user) => {
     try{
+        const { id } = await axios.get("http://localhost:8080/dashboard")
         const res = await axios.get("http://localhost:8080/dashboard/blogs")
-        console.log(res)
         const blogs = res.data.blogs
         const userBlogs = blogs.map(blog => {
             const sanittizedSyn = DOMPurify.sanitize(blog.synopsis)
@@ -46,12 +47,13 @@ const getBlogs = async(setUserBlogs, setLoadBlogs) => {
             }
             return(
                 <div className="wrapper" key={blog.id}>
-                    <BlogCard
+                    <DashBlogCard
                         image = {url}
                         header ={decodedTitle}
                         text = {decodedSyn}
-                        author = "Jason Williams"
-                        id={blog.id}
+                        author = "Me"
+                        blogId={blog.id}
+                        userId={user.id}
                     />
                 </div>
             )
@@ -72,8 +74,17 @@ const DashboardPage =() => {
     const [ userBlogs, setUserBlogs ] = useState()
     const [ loadBlogs, setLoadBlogs ] = useState(true)
     useEffect(() => {
+        // const start = async() => {
+        //     const res = await getDashboard(userLogin, userLogout, setUser, setIsLoading)
+        //     console.log(res)
+        //     if(res){
+        //         console.log(user)
+        //         getBlogs(setUserBlogs, setLoadBlogs, user)
+        //     }
+        // }
+        // start()
         getDashboard(userLogin, userLogout, setUser, setIsLoading)
-        getBlogs(setUserBlogs, setLoadBlogs)
+        // getBlogs(setUserBlogs, setLoadBlogs, user)
     }, [])
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -81,8 +92,12 @@ const DashboardPage =() => {
         }, 3000)
     }, [])
     useEffect(() => {
-        console.log(userBlogs)
-    }, [userBlogs])
+        if(user){
+            if(user.id){
+                getBlogs(setUserBlogs, setLoadBlogs, user)
+            }
+        }
+    }, [user])
     return(
         <>
             <MainNavBar sideNav={true} create={true}/>

@@ -6,7 +6,7 @@ import axios from "axios"
 import LoadingScreen from "../components/LoadingScreen"
 import SideNav from "../components/SideNav"
 import { Link } from "react-router-dom"
-import BlogCard from "../components/BlogCard"
+import BlogCard from "../components/DashBlogCard"
 import DOMPurify from 'dompurify';
 import { decode } from 'he'; 
 

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import dogImage from '../assets/images/dog.jpg';
-const BlogCard = ({image, header, text, author, id}) => {
-    const url = `/blogs/${id}`
+
+const DashBlogCard = ({image, header, text, author, blogId, userId}) => {
+    const url = `/blogs/${blogId}/users/${userId}/edit`
     return(
         <>
             <div className="blog__card">
@@ -16,7 +16,7 @@ const BlogCard = ({image, header, text, author, id}) => {
                         {text}
                     </p>
                     <div className='blog__aside__footer'>
-                        <Link className="blog__open" to={url}>Read More</Link>
+                        <Link className="blog__open" to={url}>Edit</Link>
                         <p className="blog__author">By: {author}</p>
                     </div>
                 </div>
@@ -25,6 +25,4 @@ const BlogCard = ({image, header, text, author, id}) => {
     )
 }
 
-
-
-export default BlogCard
+export default DashBlogCard
