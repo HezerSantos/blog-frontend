@@ -1112,3 +1112,8 @@ div.modal::after{
   padding: 1rem;
   border-radius: 1rem;
 }
+
+.red{
+  color: red;
+  margin-bottom: 1rem;
+}

@@ -3,14 +3,7 @@ import { useContext, useState } from "react";
 import axios from "axios"
 import { AuthContext } from "../../context/authContext"
 axios.defaults.withCredentials = true;
-const logout = async(e, userLogout, setLoggedOutMessage, navigate) => {
-    e.preventDefault()
-    const res = await axios.post("http://localhost:8080/logout");
-    console.log(res.data.message)
-    userLogout()
-    setLoggedOutMessage(true)
-    // navigate("/")
-}
+
 
 const MainNavBar = () => {
     const { isAuthenticated, userLogout } = useContext(AuthContext)
@@ -26,10 +19,16 @@ const MainNavBar = () => {
                 <ul className="nav__link__container">
                     <li><Link to="/blogs">Blogs</Link></li>
                     <li><Link to="/dashboard">Dashboard</Link></li>
-                    <li><Link to="/settings">Settings</Link></li>
-                    <li>
-                        {isAuthenticated? <form onSubmit={(e) => logout(e, userLogout, setLoggedOutMessage, navigate)}><button>Log Out</button></form> : <Link to={"/login"}>Log In</Link>}
-                    </li>
+                    {isAuthenticated? (
+                        <li>
+                            <Link to="/settings">Settings</Link>
+                        </li>
+
+                    ) : (
+                        <li>
+                            <Link to={"/login"}>Log In</Link>
+                        </li>
+                    )}
                 </ul>
             </nav>
         </>

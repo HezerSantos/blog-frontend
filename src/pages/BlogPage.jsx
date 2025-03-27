@@ -35,14 +35,29 @@ const getBlogs = async(setBlogs, setBlogLoading, setShownBlogs, setTotalPages) =
                 />
             )
         })
-
-        const totalPages = Math.floor(blogComponents.length / 3)
+        
+        let totalPages = Math.floor(blogComponents.length / 3)
+        const remainder = blogComponents.length % 3
+        if (remainder !== 0){
+            totalPages +=1
+        }
         setTotalPages(totalPages)
         const splitBlogs = blogComponents.slice(0,3)
         setShownBlogs(splitBlogs)
         setBlogs(blogComponents)
         setBlogLoading(false)
     } catch(e){
+        console.error(e)
+    }
+}
+
+const getUser = async(userLogin) => {
+    try{
+        const res = await axios.get("http://localhost:8080/")
+        // console.log(res)
+        console.log("User Reauthenticated")
+        userLogin()
+    } catch(e) {
         console.error(e)
     }
 }
@@ -89,6 +104,7 @@ const handlePrev = (blogCount, setBlogCount, blogs, setShownBlogs, setPrevFlag, 
 }
 
 const BlogPage = () => {
+    const { isAuthenticated, userLogin } = useContext(AuthContext)
     const [blogs, setBlogs ] = useState()
     const [blogLoading, setBlogLoading ] = useState(true)
     const [shownBlogs, setShownBlogs ] = useState()
@@ -99,6 +115,7 @@ const BlogPage = () => {
     const [currentPage, setCurrentPage] = useState(1)
     useEffect(() => {
         getBlogs(setBlogs, setBlogLoading, setShownBlogs, setTotalPages)
+        getUser(userLogin)
     }, [])
 
     

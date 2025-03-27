@@ -12,18 +12,24 @@ const toggleModal = (e, setUpdateFlag) => {
     setUpdateFlag(prev => !prev)
 }
 
-const updateProfile = async(e, username, password, confirmPassword, verify) =>{
+const updateProfile = async(e, username, password, confirmPassword, verify, setUsername, setConfirmPassword, setPassword, setVerify, setErrors, setUpdateFlag) =>{
     e.preventDefault()
     try{
-        const res = await axios.post("http://localhost:8080/settings/update-profile", {
+        const res = await axios.put("http://localhost:8080/settings/update-profile", {
             username: username,
             password: password,
             confirmPassword: confirmPassword,
             verify: verify
         })
         console.log(res)
+        setUsername("")
+        setPassword("")
+        setConfirmPassword("")
+        setVerify("")
+        setUpdateFlag(false)
     } catch(error){
         console.error(error)
+        setErrors(Array.from(error.response.data.errors))
     }
 }
 
@@ -35,6 +41,7 @@ const ChangeCredentials = () => {
     const [ errors, setErrors ] = useState([])
     const [usernameError, setUsernameError] = useState(false)
     const [ passwordError, setPasswordError ] = useState(false)
+    const [verifyError, setVerifyError ] = useState(false)
     const [verify, setVerify] = useState("")
     const [updateFlag, setUpdateFlag] = useState(false)
     useEffect(() => {
@@ -45,6 +52,13 @@ const ChangeCredentials = () => {
           (error) => error.path === "confirmPassword"
         );
         setPasswordError(passwordError || confirmPasswordError)
+        const verifyError = errors.some((error) => error.path === "verify")
+        setVerifyError(verifyError)
+
+        if(usernameError || passwordError || confirmPassword){
+            verifyError? setUpdateFlag(true) : setUpdateFlag(false)
+        }
+
     }, [errors])
     return (
         <>
@@ -62,7 +76,7 @@ const ChangeCredentials = () => {
                 {errors.length > 0 && (
                     errors.map((error, index) => {
                         if (error.path === "username"){
-                            return <div key={index} className="error">{error.msg}*</div>
+                            return <div key={index} className="error red">{error.msg}*</div>
                         }
                     })
                 )}
@@ -80,7 +94,7 @@ const ChangeCredentials = () => {
                     errors.map((error, index) => {
                         if (error.path === "password"){
                             () => setPasswordError(prev => true)
-                            return <div key={index} className="error">{error.msg}*</div>
+                            return <div key={index} className="error red">{error.msg}*</div>
                         }
                     })
                 )}
@@ -98,7 +112,7 @@ const ChangeCredentials = () => {
                     errors.map((error, index) => {
                         if (error.path === "confirmPassword"){
                             () => setPasswordError(prev => true)
-                            return <div key={index} className="error">{error.msg}*</div>
+                            return <div key={index} className="error red">{error.msg}*</div>
                         }
                     })
                 )}
@@ -106,7 +120,7 @@ const ChangeCredentials = () => {
             </div>
             {updateFlag && (
                 <div className="modal">
-                    <form onSubmit={(e) => updateProfile(e, username, password, confirmPassword, verify)}>
+                    <form onSubmit={(e) => updateProfile(e, username, password, confirmPassword, verify, setUsername, setConfirmPassword, setPassword, setVerify, setErrors, setUpdateFlag)}>
                         <InputBlock 
                             id={"verify"}
                             label={"Reenter old password: "}
@@ -115,7 +129,15 @@ const ChangeCredentials = () => {
                             placeholder={"old password"}
                             value={verify}
                             handleEvent={(e) => handleInput(e, setVerify)}
+                            errorBorder={verifyError? verifyError : ""}
                         />
+                        {errors.length > 0 && (
+                            errors.map((error, index) => {
+                                if (error.path === "verify"){
+                                    return <div key={index} className="error red">{error.msg}*</div>
+                                }
+                            })
+                        )}
                         <button type="submit" className="change">Confirm</button>
                         <button onClick={(e) => toggleModal(e, setUpdateFlag)} type="submit" className="back">Back</button>
                     </form>
