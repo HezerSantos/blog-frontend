@@ -88,19 +88,17 @@ const DashboardPage =() => {
             <MainNavBar sideNav={true} create={true}/>
 
             {isAuthenticated ? (
-                isLoading && (
-                    <main className="dashboard__container">
-                        {loadBlogs? (
-                            <LoadingScreen className={"loading__dash__blog"}/>
-                        ) : (
-                            userBlogs.map(blog => {
-                                return(
-                                    blog
-                                )
-                            })
-                        )}
-                </main>
-                )
+                <main className="dashboard__container">
+                    {loadBlogs? (
+                        <LoadingScreen className={"loading__dash__blog"}/>
+                    ) : (
+                        userBlogs.map(blog => {
+                            return(
+                                blog
+                            )
+                        })
+                    )}
+            </main>
             ) : (
                 <main className="loading__container">
                     {!notLoading? (

@@ -568,6 +568,22 @@ footer{
   }
 }
 
+@media (max-width: 800px){
+  .main__nav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .main__nav > *{
+    align-self: center;
+  }
+  .main__nav > a{
+    display: none;
+  }
+}
+
+
 @media (max-width: 650px){
   .side__button__container, .main__side{
     display: flex;
@@ -1319,3 +1335,4 @@ div.modal::after{
     padding: 1%;
   }
 }
+

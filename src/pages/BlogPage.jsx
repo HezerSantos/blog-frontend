@@ -14,7 +14,13 @@ const getBlogs = async(setBlogs, setBlogLoading, setShownBlogs, setTotalPages) =
     try{
         const res = await axios.get("http://localhost:8080/blogs")
         let blogs = res.data.blogs
-
+        let users = res.data.users
+        const list = Object.entries(users).map(([id, username]) => ({
+            id: parseInt(id),
+            username: username
+        }));
+        const map = new Map(users.map(item => [item.id, item.username]));
+        console.log(map)
         const blogComponents = blogs.map(blog => {
             const sanittizedSyn = DOMPurify.sanitize(blog.synopsis)
             const decodedSyn = decode(sanittizedSyn)
@@ -30,7 +36,7 @@ const getBlogs = async(setBlogs, setBlogLoading, setShownBlogs, setTotalPages) =
                     image = {url}
                     header ={decodedTitle}
                     text = {decodedSyn}
-                    author = "Jason Williams"
+                    author = {map.get(blog.userId)}
                     id={blog.id}
                 />
             )
