@@ -36,6 +36,7 @@ const getBlogs = async(setUserBlogs, setLoadBlogs, user) => {
         const { id } = await axios.get("http://localhost:8080/dashboard")
         const res = await axios.get("http://localhost:8080/dashboard/blogs")
         const blogs = res.data.blogs
+        // console.log(blogs)
         const userBlogs = blogs.map(blog => {
             const sanittizedSyn = DOMPurify.sanitize(blog.synopsis)
             const decodedSyn = decode(sanittizedSyn)
@@ -45,10 +46,11 @@ const getBlogs = async(setUserBlogs, setLoadBlogs, user) => {
             if (blog.image[0]){
                 url = blog.image[0].url
             }
+            const random = Math.floor(Math.random() * (5 - 2 + 1)) + 2;
             return(
                 <div className="wrapper" key={blog.id}>
                     <DashBlogCard
-                        image = {url}
+                        image = {`${url}?v=${random}`}
                         header ={decodedTitle}
                         text = {decodedSyn}
                         author = "Me"
@@ -100,7 +102,7 @@ const DashboardPage =() => {
     }, [user])
     return(
         <>
-            <MainNavBar sideNav={true} create={true}/>
+            <MainNavBar sideNav={true} dFlag={true}/>
 
             {isAuthenticated ? (
                 <main className="dashboard__container">

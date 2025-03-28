@@ -848,6 +848,7 @@ footer{
 }
 
 .blog__creation__container{
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1336,3 +1337,45 @@ div.modal::after{
   }
 }
 
+.select{
+  text-decoration: underline;
+}
+
+.delete__modal{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid var(--pri__color);
+  border-radius: 1rem;
+}
+
+.delete__modal > div{
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 3rem;
+}
+.delete__modal > div > h2{
+  font-family: mainHeader;
+}
+.delete__modal > div > div{
+  display: flex;
+  gap: 3rem;
+}
+
+.d__back{
+  background-color: rgb(69, 135, 223);
+  color: rgb(255, 255, 255);
+}
+
+.d__back:hover{
+  background-color: rgb(28, 110, 218);
+}
+
+.edit__container{
+  display: flex;
+  gap: 2rem;
+}

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import MainNavBar from "../components/MainNavBar"
 import Footer from "../components/Footer"
 import { AuthContext } from "../../context/authContext"
@@ -25,7 +25,7 @@ const getUser = async(userLogin, setIsLoading) => {
 
 const hanldeBlog = async(e, setErrors, setSubmitLoading, setFileType, blogId, userId) => {
     e.preventDefault()
-    
+    setSubmitLoading(true)
     try{
         
         
@@ -54,10 +54,11 @@ const hanldeBlog = async(e, setErrors, setSubmitLoading, setFileType, blogId, us
         )
         // window.location.reload()
         console.log(res)
+        setSubmitLoading(false)
     } catch (e) {
         console.error(e)
         setSubmitLoading(false)
-        // if(e.response.data.errors) setErrors(e.response.data.errors)
+        if(e.response.data.errors) setErrors(e.response.data.errors)
     }
 }
 
@@ -93,6 +94,31 @@ const handleInput = (e, setInput, flag) => {
     return setInput(e.target.value)
 }
 
+const toggleModal = (e, modal) => {
+    e.preventDefault()
+    modal.current.showModal()
+}
+
+const closeModal = (modal) => {
+    modal.current.close()
+}
+
+const deleteBlog = async(blogId, setSubmitLoading, modal, navigate) => {
+    setSubmitLoading(true)
+    modal.current.close()
+    try{
+        
+        const res = await axios.delete(`http://localhost:8080/blogs/${blogId}`)
+
+        console.log(res)
+        setSubmitLoading(false)
+        navigate("/dashboard")
+    } catch(e){
+        console.error(e)
+        setSubmitLoading(false)
+    }
+}
+
 
 const EditBlogPage = () => {
     const { blogId, userId } = useParams()
@@ -105,6 +131,9 @@ const EditBlogPage = () => {
     const [ fileType, setFileType ] = useState("Add to change")
     const [errors, setErrors] = useState([])
     const [ submitLoading, setSubmitLoading ] = useState(false)
+    const [ modalFlag, setModalFlag ] = useState(false)
+
+    const modal = useRef(null)
     const navigate = useNavigate()
     useEffect(() => {
         getUser(userLogin, setIsLoading)
@@ -156,7 +185,10 @@ const EditBlogPage = () => {
                                     <label htmlFor="iblog__text" className="liblog__text">Text: </label>
                                     <textarea onChange={(e) => handleInput(e, setText, false)} name="text" id="iblog__text" className="iblog__text" placeholder="Blog Text Here" value={text}></textarea>
                                 </div>
-                                <button type="submit" className="submit__blog">Update</button>
+                                <div className="edit__container">
+                                    <button type="submit" className="submit__blog">Update</button>
+                                    <button className="submit__blog" onClick={(e) => toggleModal(e, modal)}>Delete</button>
+                                </div>
                             </form>
                         ) : (
                             <LoadingScreen className={"loading__circle loading__create"}/>
@@ -170,6 +202,17 @@ const EditBlogPage = () => {
                             <h1>Please <Link to={"/login"}>Log in</Link></h1>
                         )}
                     </>
+                )}
+                {!modalFlag && (
+                    <dialog ref={modal} className="delete__modal" >
+                        <div>
+                            <h2>Are you sure you want to delete?</h2>
+                            <div>
+                                <button onClick={() => deleteBlog(blogId,setSubmitLoading, modal, navigate)} className="log__out">Delete</button>
+                                <button onClick={() => closeModal(modal)} className="log__out d__back">Back</button>
+                            </div>
+                        </div>
+                    </dialog>
                 )}
                 </main>
             <Footer />

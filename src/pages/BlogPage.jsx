@@ -6,7 +6,7 @@ import axios from "axios"
 import LoadingScreen from "../components/LoadingScreen"
 import SideNav from "../components/SideNav"
 import { Link } from "react-router-dom"
-import BlogCard from "../components/DashBlogCard"
+import BlogCard from "../components/BlogCard"
 import DOMPurify from 'dompurify';
 import { decode } from 'he'; 
 
@@ -127,7 +127,7 @@ const BlogPage = () => {
     
     return(
         <>
-            <MainNavBar />
+            <MainNavBar bFlag={true}/>
             <main className="blog__page">
                 {blogLoading? (
                     <LoadingScreen className={"loading__circle loading__dash"}/>

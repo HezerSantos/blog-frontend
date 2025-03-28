@@ -10,7 +10,7 @@ const handleAside = (asideRef) => {
 }
 
 
-const MainNavBar = ({sideNav, create}) => {
+const MainNavBar = ({sideNav, bFlag, dFlag}) => {
     const { isAuthenticated, userLogout } = useContext(AuthContext)
     const [loggedOutMessage, setLoggedOutMessage ] = useState(false)
     const asideRef = useRef(null)
@@ -20,8 +20,8 @@ const MainNavBar = ({sideNav, create}) => {
             <nav ref={asideRef} className="main__side show">
                 <Link to="/" className="link__home">TheyWroteIt</Link>
                 <ul className="nav__link__container nav__side">
-                    <li><Link to="/blogs">Blogs</Link></li>
-                    <li><Link to="/dashboard">Dashboard</Link></li>
+                    <li><Link to="/blogs" className={bFlag? 'select' : ''}>Blogs</Link></li>
+                    <li><Link to="/dashboard" className={dFlag? 'select' : ''}>Dashboard</Link></li>
                     {isAuthenticated? (
                         <li>
                             <Link to="/settings">Settings</Link>
@@ -54,8 +54,8 @@ const MainNavBar = ({sideNav, create}) => {
                 )}
                 <Link to="/" className="link__home">TheyWroteIt</Link>
                 <ul className="nav__link__container">
-                    <li><Link to="/blogs">Blogs</Link></li>
-                    <li><Link to="/dashboard">Dashboard</Link></li>
+                    <li><Link to="/blogs" className={bFlag? 'select' : ''}>Blogs</Link></li>
+                    <li><Link to="/dashboard" className={dFlag? 'select' : ''}>Dashboard</Link></li>
                     {isAuthenticated? (
                         <>
                             <li>
