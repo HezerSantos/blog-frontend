@@ -49,7 +49,7 @@ const hanldeBlog = async(e, setErrors, setSubmitLoading, setFileType) => {
             }
         )
         
-        console.log(res)
+        // console.log(res)
         window.location.reload()
     } catch (e) {
         console.error(e)
@@ -78,6 +78,7 @@ const CreateBlog = () => {
     const [errors, setErrors] = useState([])
     const [ submitLoading, setSubmitLoading ] = useState(false)
     useEffect(() => {
+        document.title = "TheyWroteIt | Create Blog"
         getUser(userLogin, setIsLoading)
     }, [])
     useEffect(() => {

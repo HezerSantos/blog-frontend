@@ -27,12 +27,11 @@ const SettingsPage = () => {
     const asideRef = useRef(null)
     const navigate = useNavigate()
     useEffect(() => {
+        document.title = "TheyWroteIt | Settings"
         const handleResize = () => {
-            window.addEventListener('resize', () => {
-                if(window.innerWidth >= 800){
-                    asideRef.current.classList?.remove("show")
-                }
-            })
+            if(window.innerWidth >= 800){
+                asideRef.current.classList?.remove("show")
+            }
         };
     
         // Add the resize event listener when the component mounts

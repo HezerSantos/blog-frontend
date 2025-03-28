@@ -53,7 +53,7 @@ const hanldeBlog = async(e, setErrors, setSubmitLoading, setFileType, blogId, us
             }
         )
         // window.location.reload()
-        console.log(res)
+        // console.log(res)
         setSubmitLoading(false)
     } catch (e) {
         console.error(e)
@@ -110,7 +110,7 @@ const deleteBlog = async(blogId, setSubmitLoading, modal, navigate) => {
         
         const res = await axios.delete(`http://localhost:8080/blogs/${blogId}`)
 
-        console.log(res)
+        // console.log(res)
         setSubmitLoading(false)
         navigate("/dashboard")
     } catch(e){
@@ -136,6 +136,7 @@ const EditBlogPage = () => {
     const modal = useRef(null)
     const navigate = useNavigate()
     useEffect(() => {
+        document.title = "TheyWroteIt | Edit Blog"
         getUser(userLogin, setIsLoading)
         getBlog(setIsLoading, blogId, userId, setTitle, setText, setSyn, navigate)
     }, [])

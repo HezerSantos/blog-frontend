@@ -17,7 +17,7 @@ axios.defaults.withCredentials = true;
 const getUser = async(isAuthenticated, userLogin) => {
     try{
         const res = await axios.get("http://localhost:8080/")
-        console.log(res)
+        // console.log(res)
         userLogin()
     } catch(e) {
         // console.error(e)
@@ -61,6 +61,7 @@ const HomePage = () => {
     const [allBlogs, setAllBlogs] = useState()
     const [blogLoading, setBlogLoading ] = useState(true)
     useEffect(() => {
+        document.title = "TheyWroteIt"
         getUser(isAuthenticated, userLogin)
         getBlogs(setAllBlogs, setBlogLoading)
     }, [])

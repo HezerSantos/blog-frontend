@@ -34,7 +34,7 @@ const getBlogById = async(id, setBlog, setIsLoading, setTitle, setSyn, setImage,
         setImage(url)
         setBlog(blog)
         setIsLoading(false)
-        console.log(res)
+        // console.log(res)
     } catch(e) {
         console.error(e)
     }

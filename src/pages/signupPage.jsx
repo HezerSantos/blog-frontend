@@ -14,7 +14,7 @@ const signUp = async(e, navigate, setIsLoading, setErrors) => {
             password: e.target.password.value,
             confirmPassword: e.target.confirmPassword.value
         })
-        console.log(res)
+        // console.log(res)
         navigate("/login")
     } catch(e){
         setIsLoading(false)

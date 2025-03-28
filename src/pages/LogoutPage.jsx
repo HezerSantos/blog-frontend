@@ -14,7 +14,7 @@ const logout = async(userLogout, navigate) => {
 const getUser = async(userLogin) => {
     try{
         const res = await axios.get("http://localhost:8080/")
-        console.log(res)
+        // console.log(res)
         console.log("User Reauthenticated")
         userLogin()
     } catch(e) {

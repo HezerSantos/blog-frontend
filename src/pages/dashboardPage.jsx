@@ -76,6 +76,7 @@ const DashboardPage =() => {
     const [ userBlogs, setUserBlogs ] = useState()
     const [ loadBlogs, setLoadBlogs ] = useState(true)
     useEffect(() => {
+        document.title = "TheyWroteIt | Dashboard"
         // const start = async() => {
         //     const res = await getDashboard(userLogin, userLogout, setUser, setIsLoading)
         //     console.log(res)
@@ -109,11 +110,15 @@ const DashboardPage =() => {
                     {loadBlogs? (
                         <LoadingScreen className={"loading__dash__blog"}/>
                     ) : (
-                        userBlogs.map(blog => {
-                            return(
-                                blog
-                            )
-                        })
+                        userBlogs.length > 0? (
+                            userBlogs.map(blog => {
+                                return(
+                                    blog
+                                )
+                            })
+                        ) : (
+                            <h1>No Blogs Yet</h1>
+                        )
                     )}
             </main>
             ) : (

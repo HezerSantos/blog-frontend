@@ -20,7 +20,7 @@ const getBlogs = async(setBlogs, setBlogLoading, setShownBlogs, setTotalPages) =
             username: username
         }));
         const map = new Map(users.map(item => [item.id, item.username]));
-        console.log(map)
+        // console.log(map)
         const blogComponents = blogs.map(blog => {
             const sanittizedSyn = DOMPurify.sanitize(blog.synopsis)
             const decodedSyn = decode(sanittizedSyn)
@@ -120,6 +120,7 @@ const BlogPage = () => {
     const [totalPages, setTotalPages ] = useState(0)
     const [currentPage, setCurrentPage] = useState(1)
     useEffect(() => {
+        document.title = "TheyWroteIt | Blogs"
         getBlogs(setBlogs, setBlogLoading, setShownBlogs, setTotalPages)
         getUser(userLogin)
     }, [])

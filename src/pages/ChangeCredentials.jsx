@@ -21,7 +21,7 @@ const updateProfile = async(e, username, password, confirmPassword, verify, setU
             confirmPassword: confirmPassword,
             verify: verify
         })
-        console.log(res)
+        // console.log(res)
         setUsername("")
         setPassword("")
         setConfirmPassword("")

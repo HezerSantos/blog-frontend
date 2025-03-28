@@ -1,6 +1,6 @@
 import InputBlock from "../components/InputBlock"
 import { Link, useNavigate } from "react-router-dom"
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import axios from "axios"
 axios.defaults.withCredentials = true;
 import { AuthContext } from "../../context/authContext"
@@ -15,7 +15,7 @@ const login = async(e, navigate, setError, setLoginError, setIsLoading, userLogi
             username: e.target.username.value,
             password: e.target.password.value
         })
-        console.log(res)
+        // console.log(res)
         userLogin()
         navigate("/")
     } catch (e) {
@@ -38,6 +38,9 @@ const LoginPage = () => {
     const [username, setUsername ] = useState("")
     const [password, setPassword ] = useState("")
     const navigate = useNavigate()
+    useEffect(() => {
+        document.title = "TheyWroteIt | Login"
+    }, [])
     return (
         <>
             <form onSubmit={(e) => login(e, navigate, setError, setLoginError, setIsLoading, userLogin)} className="validation__main">
