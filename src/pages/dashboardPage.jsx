@@ -16,7 +16,7 @@ axios.defaults.withCredentials = true;
 
 const getDashboard = async(userLogin, userLogout, setUser, setIsLoading) => {
     try{
-        const res = await axios.get("http://localhost:8080/dashboard")
+        const res = await axios.get("https://blog-backend-production-6a28.up.railway.app/dashboard")
         // console.log(res)
         setUser(res.data.user)
         setIsLoading(true)
@@ -33,8 +33,8 @@ const getDashboard = async(userLogin, userLogout, setUser, setIsLoading) => {
 
 const getBlogs = async(setUserBlogs, setLoadBlogs, user) => {
     try{
-        const { id } = await axios.get("http://localhost:8080/dashboard")
-        const res = await axios.get("http://localhost:8080/dashboard/blogs")
+        const { id } = await axios.get("https://blog-backend-production-6a28.up.railway.app/dashboard")
+        const res = await axios.get("https://blog-backend-production-6a28.up.railway.app/dashboard/blogs")
         const blogs = res.data.blogs
         // console.log(blogs)
         const userBlogs = blogs.map(blog => {

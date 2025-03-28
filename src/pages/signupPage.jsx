@@ -9,7 +9,7 @@ const signUp = async(e, navigate, setIsLoading, setErrors) => {
     e.preventDefault()
     try{
         setIsLoading(true)
-        const res = await axios.post("http://localhost:8080/signup" ,{
+        const res = await axios.post("https://blog-backend-production-6a28.up.railway.app/signup" ,{
             username: e.target.username.value,
             password: e.target.password.value,
             confirmPassword: e.target.confirmPassword.value

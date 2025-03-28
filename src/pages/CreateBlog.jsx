@@ -12,7 +12,7 @@ axios.defaults.withCredentials = true;
 
 const getUser = async(userLogin, setIsLoading) => {
     try{
-        const res = await axios.get("http://localhost:8080/")
+        const res = await axios.get("https://blog-backend-production-6a28.up.railway.app/")
         // console.log(res)
         console.log("User Reauthenticated")
         userLogin()
@@ -40,7 +40,7 @@ const hanldeBlog = async(e, setErrors, setSubmitLoading, setFileType) => {
             formData.append('file', fileInput.files[0]);
         }
         setSubmitLoading(true)
-        const res = await axios.post("http://localhost:8080/dashboard/create-blog", 
+        const res = await axios.post("https://blog-backend-production-6a28.up.railway.app/dashboard/create-blog", 
             formData, 
             {
                 headers: {

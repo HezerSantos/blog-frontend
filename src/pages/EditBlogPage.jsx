@@ -14,7 +14,7 @@ axios.defaults.withCredentials = true;
 
 const getUser = async(userLogin, setIsLoading) => {
     try{
-        const res = await axios.get("http://localhost:8080/")
+        const res = await axios.get("https://blog-backend-production-6a28.up.railway.app/")
         // console.log(res)
         console.log("User Reauthenticated")
         userLogin()
@@ -44,7 +44,7 @@ const hanldeBlog = async(e, setErrors, setSubmitLoading, setFileType, blogId, us
         }
 
         // setSubmitLoading(true)
-        const res = await axios.put(`http://localhost:8080/blogs/${blogId}/users/${userId}/update`, 
+        const res = await axios.put(`https://blog-backend-production-6a28.up.railway.app/blogs/${blogId}/users/${userId}/update`, 
             formData, 
             {
                 headers: {
@@ -64,7 +64,7 @@ const hanldeBlog = async(e, setErrors, setSubmitLoading, setFileType, blogId, us
 
 const getBlog = async(setIsLoading, blogId, userId, setTitle, setText, setSyn, navigate) => {
     try{
-        const res = await axios.get(`http://localhost:8080/blogs/${blogId}/users/${userId}/edit`)
+        const res = await axios.get(`https://blog-backend-production-6a28.up.railway.app/blogs/${blogId}/users/${userId}/edit`)
         const title = res.data.blog.title
         const text = res.data.blog.passage[0].text
         const syn = res.data.blog.synopsis
@@ -108,7 +108,7 @@ const deleteBlog = async(blogId, setSubmitLoading, modal, navigate) => {
     modal.current.close()
     try{
         
-        const res = await axios.delete(`http://localhost:8080/blogs/${blogId}`)
+        const res = await axios.delete(`https://blog-backend-production-6a28.up.railway.app/blogs/${blogId}`)
 
         // console.log(res)
         setSubmitLoading(false)

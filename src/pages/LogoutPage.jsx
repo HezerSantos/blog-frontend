@@ -5,7 +5,7 @@ import axios from "axios"
 axios.defaults.withCredentials = true;
 
 const logout = async(userLogout, navigate) => {
-    const res = await axios.post("http://localhost:8080/logout");
+    const res = await axios.post("https://blog-backend-production-6a28.up.railway.app/logout");
     console.log(res.data.message)
     userLogout()
     navigate("/")
@@ -13,7 +13,7 @@ const logout = async(userLogout, navigate) => {
 
 const getUser = async(userLogin) => {
     try{
-        const res = await axios.get("http://localhost:8080/")
+        const res = await axios.get("https://blog-backend-production-6a28.up.railway.app/")
         // console.log(res)
         console.log("User Reauthenticated")
         userLogin()

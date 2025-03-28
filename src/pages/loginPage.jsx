@@ -11,7 +11,7 @@ const login = async(e, navigate, setError, setLoginError, setIsLoading, userLogi
     e.preventDefault()
     try {
         setIsLoading(true)
-        const res = await axios.post("http://localhost:8080/login", {
+        const res = await axios.post("https://blog-backend-production-6a28.up.railway.app/login", {
             username: e.target.username.value,
             password: e.target.password.value
         })

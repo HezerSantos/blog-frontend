@@ -10,7 +10,7 @@ import { decode } from 'he';
 
 const getBlogById = async(id, setBlog, setIsLoading, setTitle, setSyn, setImage, setText) => {
     try{
-        const res = await axios.get(`http://localhost:8080/blogs/${id}`)
+        const res = await axios.get(`https://blog-backend-production-6a28.up.railway.app/blogs/${id}`)
         const blog = res.data.blog
 
         const title = blog.title
@@ -42,7 +42,7 @@ const getBlogById = async(id, setBlog, setIsLoading, setTitle, setSyn, setImage,
 
 const getUser = async(userLogin) => {
     try{
-        const res = await axios.get("http://localhost:8080/")
+        const res = await axios.get("https://blog-backend-production-6a28.up.railway.app/")
         // console.log(res)
         console.log("User Reauthenticated")
         userLogin()

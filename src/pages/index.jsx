@@ -16,7 +16,7 @@ axios.defaults.withCredentials = true;
 
 const getUser = async(isAuthenticated, userLogin) => {
     try{
-        const res = await axios.get("blog-backend-production-6a28.up.railway.app/")
+        const res = await axios.get("https://blog-backend-production-6a28.up.railway.app/")
         // console.log(res)
         userLogin()
     } catch(e) {
@@ -26,7 +26,7 @@ const getUser = async(isAuthenticated, userLogin) => {
 
 const getBlogs = async(setAllBlogs, setBlogLoading) => {
     try{
-        const res = await axios.get("blog-backend-production-6a28.up.railway.app/blogs")
+        const res = await axios.get("https://blog-backend-production-6a28.up.railway.app/blogs")
         let blogs = res.data.blogs
         blogs = blogs.slice(0,3)
         const blogComponents = blogs.map(blog => {

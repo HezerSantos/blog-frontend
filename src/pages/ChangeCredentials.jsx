@@ -15,7 +15,7 @@ const toggleModal = (e, setUpdateFlag) => {
 const updateProfile = async(e, username, password, confirmPassword, verify, setUsername, setConfirmPassword, setPassword, setVerify, setErrors, setUpdateFlag) =>{
     e.preventDefault()
     try{
-        const res = await axios.put("http://localhost:8080/settings/update-profile", {
+        const res = await axios.put("https://blog-backend-production-6a28.up.railway.app/settings/update-profile", {
             username: username,
             password: password,
             confirmPassword: confirmPassword,

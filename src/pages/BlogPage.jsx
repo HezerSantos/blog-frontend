@@ -12,7 +12,7 @@ import { decode } from 'he';
 
 const getBlogs = async(setBlogs, setBlogLoading, setShownBlogs, setTotalPages) => {
     try{
-        const res = await axios.get("http://localhost:8080/blogs")
+        const res = await axios.get("https://blog-backend-production-6a28.up.railway.app/blogs")
         let blogs = res.data.blogs
         let users = res.data.users
         const list = Object.entries(users).map(([id, username]) => ({
