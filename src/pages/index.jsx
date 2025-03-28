@@ -26,7 +26,12 @@ const getUser = async(isAuthenticated, userLogin) => {
 
 const getBlogs = async(setAllBlogs, setBlogLoading) => {
     try{
-        const res = await axios.get("https://blog-backend-production-6a28.up.railway.app/blogs")
+        const res = await axios.get("https://blog-backend-production-6a28.up.railway.app/blogs", {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
         let blogs = res.data.blogs
         blogs = blogs.slice(0,3)
         const blogComponents = blogs.map(blog => {
