@@ -9,10 +9,10 @@ import { Link } from "react-router-dom"
 import BlogCard from "../components/BlogCard"
 import DOMPurify from 'dompurify';
 import { decode } from 'he'; 
-
+import config from '../../config';
 const getBlogs = async(setBlogs, setBlogLoading, setShownBlogs, setTotalPages) => {
     try{
-        const res = await axios.get("https://blog-backend-production-6a28.up.railway.app/blogs")
+        const res = await axios.get(`${config.apiUrl}/blogs`)
         let blogs = res.data.blogs
         let users = res.data.users
         const list = Object.entries(users).map(([id, username]) => ({
@@ -59,7 +59,7 @@ const getBlogs = async(setBlogs, setBlogLoading, setShownBlogs, setTotalPages) =
 
 const getUser = async(userLogin) => {
     try{
-        const res = await axios.get("http://localhost:8080/")
+        const res = await axios.get(`${config.apiUrl}`)
         // console.log(res)
         console.log("User Reauthenticated")
         userLogin()
