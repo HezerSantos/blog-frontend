@@ -14,6 +14,13 @@ if (process.env.NODE_ENV === 'development') {
   }
   
 function App() {
+    useEffect(() => {
+        console.log = () => {};
+        console.warn = () => {};
+        console.error = () => {};
+        console.info = () => {};
+        console.debug = () => {};
+    }, [])
     axios.defaults.withCredentials = true;
     return (
         <AuthProvider>
