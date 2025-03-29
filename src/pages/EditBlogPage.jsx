@@ -10,11 +10,11 @@ import InputBlock from "../components/InputBlock"
 import DOMPurify from 'dompurify';
 import { decode } from 'he'; 
 axios.defaults.withCredentials = true;
-
+import config from '../../config';
 
 const getUser = async(userLogin, setIsLoading) => {
     try{
-        const res = await axios.get("https://blog-backend-production-6a28.up.railway.app/")
+        const res = await axios.get(`${config.apiUrl}/`)
         // console.log(res)
         console.log("User Reauthenticated")
         userLogin()
@@ -44,7 +44,7 @@ const hanldeBlog = async(e, setErrors, setSubmitLoading, setFileType, blogId, us
         }
 
         // setSubmitLoading(true)
-        const res = await axios.put(`https://blog-backend-production-6a28.up.railway.app/blogs/${blogId}/users/${userId}/update`, 
+        const res = await axios.put(`${config.apiUrl}/blogs/${blogId}/users/${userId}/update`, 
             formData, 
             {
                 headers: {
@@ -64,7 +64,7 @@ const hanldeBlog = async(e, setErrors, setSubmitLoading, setFileType, blogId, us
 
 const getBlog = async(setIsLoading, blogId, userId, setTitle, setText, setSyn, navigate) => {
     try{
-        const res = await axios.get(`https://blog-backend-production-6a28.up.railway.app/blogs/${blogId}/users/${userId}/edit`)
+        const res = await axios.get(`${config.apiUrl}/blogs/${blogId}/users/${userId}/edit`)
         const title = res.data.blog.title
         const text = res.data.blog.passage[0].text
         const syn = res.data.blog.synopsis

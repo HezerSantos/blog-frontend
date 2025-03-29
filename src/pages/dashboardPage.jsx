@@ -13,10 +13,10 @@ import { MdPublish } from "react-icons/md";
 import { RiDraftLine } from "react-icons/ri";
 import { FaComment } from "react-icons/fa";
 axios.defaults.withCredentials = true;
-
+import config from '../../config';
 const getDashboard = async(userLogin, userLogout, setUser, setIsLoading) => {
     try{
-        const res = await axios.get("https://blog-backend-production-6a28.up.railway.app/dashboard")
+        const res = await axios.get(`${config.apiUrl}/dashboard`)
         // console.log(res)
         setUser(res.data.user)
         setIsLoading(true)
@@ -33,8 +33,8 @@ const getDashboard = async(userLogin, userLogout, setUser, setIsLoading) => {
 
 const getBlogs = async(setUserBlogs, setLoadBlogs, user) => {
     try{
-        const { id } = await axios.get("https://blog-backend-production-6a28.up.railway.app/dashboard")
-        const res = await axios.get("https://blog-backend-production-6a28.up.railway.app/dashboard/blogs")
+        const { id } = await axios.get(`${config.apiUrl}/dashboard`)
+        const res = await axios.get(`${config.apiUrl}/dashboard/blogs`)
         const blogs = res.data.blogs
         // console.log(blogs)
         const userBlogs = blogs.map(blog => {

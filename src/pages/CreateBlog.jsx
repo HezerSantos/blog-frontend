@@ -8,11 +8,11 @@ import SideNav from "../components/SideNav"
 import { Link, useNavigate } from "react-router-dom"
 import InputBlock from "../components/InputBlock"
 axios.defaults.withCredentials = true;
-
+import config from '../../config';
 
 const getUser = async(userLogin, setIsLoading) => {
     try{
-        const res = await axios.get("https://blog-backend-production-6a28.up.railway.app/")
+        const res = await axios.get(`${config.apiUrl}/`)
         // console.log(res)
         console.log("User Reauthenticated")
         userLogin()
@@ -40,7 +40,7 @@ const hanldeBlog = async(e, setErrors, setSubmitLoading, setFileType) => {
             formData.append('file', fileInput.files[0]);
         }
         setSubmitLoading(true)
-        const res = await axios.post("https://blog-backend-production-6a28.up.railway.app/dashboard/create-blog", 
+        const res = await axios.post(`${config.apiUrl}/dashboard/create-blog`, 
             formData, 
             {
                 headers: {

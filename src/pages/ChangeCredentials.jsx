@@ -2,7 +2,7 @@ import { useState, useEffect, version } from "react"
 import InputBlock from "../components/InputBlock"
 import axios from "axios"
 axios.defaults.withCredentials = true;
-
+import config from '../../config';
 const handleInput = (e, setInput) => {
     setInput(e.target.value)
 }
@@ -15,7 +15,7 @@ const toggleModal = (e, setUpdateFlag) => {
 const updateProfile = async(e, username, password, confirmPassword, verify, setUsername, setConfirmPassword, setPassword, setVerify, setErrors, setUpdateFlag) =>{
     e.preventDefault()
     try{
-        const res = await axios.put("https://blog-backend-production-6a28.up.railway.app/settings/update-profile", {
+        const res = await axios.put(`${config.apiUrl}/settings/update-profile`, {
             username: username,
             password: password,
             confirmPassword: confirmPassword,

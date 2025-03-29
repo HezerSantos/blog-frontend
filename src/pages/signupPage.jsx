@@ -4,12 +4,12 @@ import { Link, useNavigate } from "react-router-dom"
 import LoadingScreen from "../components/LoadingScreen";
 import axios from "axios"
 axios.defaults.withCredentials = true;
-
+import config from '../../config';
 const signUp = async(e, navigate, setIsLoading, setErrors) => {
     e.preventDefault()
     try{
         setIsLoading(true)
-        const res = await axios.post("https://blog-backend-production-6a28.up.railway.app/signup" ,{
+        const res = await axios.post(`${config.apiUrl}/signup` ,{
             username: e.target.username.value,
             password: e.target.password.value,
             confirmPassword: e.target.confirmPassword.value

@@ -6,12 +6,12 @@ axios.defaults.withCredentials = true;
 import { AuthContext } from "../../context/authContext"
 
 import LoadingScreen from "../components/LoadingScreen";
-
+import config from '../../config';
 const login = async(e, navigate, setError, setLoginError, setIsLoading, userLogin) => {
     e.preventDefault()
     try {
         setIsLoading(true)
-        const res = await axios.post("https://blog-backend-production-6a28.up.railway.app/login", {
+        const res = await axios.post(`${config.apiUrl}/login`, {
             username: e.target.username.value,
             password: e.target.password.value
         })

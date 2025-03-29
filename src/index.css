@@ -106,6 +106,7 @@ button{
   padding: 1rem;
   border-radius: .5rem;
   border: none;
+  font-size: 1rem;
 }
 
 label.auth__input{
@@ -1106,13 +1107,23 @@ input.iblog__title{
   box-shadow: 0px 2px 5px 1px rgb(160, 160, 160);
 }
 
-.settings__page > div > a, .back{
+.settings__page > div > a, .back, .settings__page > div > div > a{
   background-color: rgb(69, 135, 223);
   color: rgb(255, 255, 255);
 }
 
-.settings__page > div > a:hover, .back:hover{
+.settings__page > div > a:hover, .back:hover, .settings__page > div > div > a:hover{
   background-color: rgb(28, 110, 218);
+}
+
+.settings__page > div > div > a, .settings__page > div > div > button{
+  border-radius: 1rem;
+  text-decoration: none;
+}
+
+.settings__page > div > div{
+  display: flex;
+  gap: 2rem;
 }
 
 .change{
@@ -1218,8 +1229,6 @@ div.modal::after{
   width: 2rem;
 }
 
-.top__nav button svg path{
-}
 
 .show{
   transform: translateX(-100%);
@@ -1378,4 +1387,8 @@ div.modal::after{
 .edit__container{
   display: flex;
   gap: 2rem;
+}
+
+.iblog__text{
+  width: clamp(12.875rem, 100%, 40rem);;
 }

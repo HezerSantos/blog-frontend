@@ -11,12 +11,12 @@ import DOMPurify from 'dompurify';
 import { decode } from 'he'; 
 import LoadingScreen from "../components/LoadingScreen";
 axios.defaults.withCredentials = true;
-
+import config from '../../config';
 
 
 const getUser = async(isAuthenticated, userLogin) => {
     try{
-        const res = await axios.get("https://blog-backend-production-6a28.up.railway.app/")
+        const res = await axios.get(`${config.apiUrl}/`)
         // console.log(res)
         userLogin()
     } catch(e) {
@@ -26,7 +26,7 @@ const getUser = async(isAuthenticated, userLogin) => {
 
 const getBlogs = async(setAllBlogs, setBlogLoading) => {
     try{
-        const res = await axios.get("https://blog-backend-production-6a28.up.railway.app/blogs", {
+        const res = await axios.get(`${config.apiUrl}/blogs`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
@@ -34,6 +34,9 @@ const getBlogs = async(setAllBlogs, setBlogLoading) => {
         })
         let blogs = res.data.blogs
         blogs = blogs.slice(0,3)
+        let users = res.data.users
+        const map = new Map(users.map(item => [item.id, item.username]));
+        console.log(map)
         const blogComponents = blogs.map(blog => {
             const sanittizedSyn = DOMPurify.sanitize(blog.synopsis)
             const decodedSyn = decode(sanittizedSyn)
@@ -49,7 +52,7 @@ const getBlogs = async(setAllBlogs, setBlogLoading) => {
                     image = {url}
                     header ={decodedTitle}
                     text = {decodedSyn}
-                    author = "Jason Williams"
+                    author = {map.get(blog.userId)}
                     id={blog.id}
                 />
             )

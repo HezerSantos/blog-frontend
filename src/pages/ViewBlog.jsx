@@ -7,10 +7,10 @@ import Footer from "../components/Footer"
 import LoadingScreen from "../components/LoadingScreen"
 import DOMPurify from 'dompurify';
 import { decode } from 'he'; 
-
+import config from '../../config';
 const getBlogById = async(id, setBlog, setIsLoading, setTitle, setSyn, setImage, setText) => {
     try{
-        const res = await axios.get(`https://blog-backend-production-6a28.up.railway.app/blogs/${id}`)
+        const res = await axios.get(`${config.apiUrl}/blogs/${id}`)
         const blog = res.data.blog
 
         const title = blog.title
@@ -42,7 +42,7 @@ const getBlogById = async(id, setBlog, setIsLoading, setTitle, setSyn, setImage,
 
 const getUser = async(userLogin) => {
     try{
-        const res = await axios.get("https://blog-backend-production-6a28.up.railway.app/")
+        const res = await axios.get(`${config.apiUrl}/`)
         // console.log(res)
         console.log("User Reauthenticated")
         userLogin()
